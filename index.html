@@ -160,16 +160,7 @@
       letter-spacing:-0.035em;
     }
     .hero-title-main{ color:#fff; font-weight:900; }
-    .hero-title-sub{
-      display:block;
-      margin-top:10px;
-      color:#dbeafe;
-      font-weight:700;
-      font-size:16px;
-      letter-spacing:0.02em;
-      text-transform:uppercase;
-      opacity:0.95;
-    }
+
     .hero p{
       max-width:900px;
       margin:0 auto 26px;
@@ -233,7 +224,7 @@
       .btn{ min-width: 260px; }
     }
 
-    /* ---------- SCAN / ASSESS / MANAGE (ACP-ish cards) ---------- */
+    /* ---------- SCAN / ASSESS / MANAGE ---------- */
     .triad{
       padding:calc(var(--section-y) - 10px) 0;
       background:#fff;
@@ -308,7 +299,7 @@
       .triad-grid{ grid-template-columns:1fr; }
     }
 
-    /* ---------- TRUST + LOGO CAROUSEL (worldmap like ACP) ---------- */
+    /* ---------- TRUST + LOGO CAROUSEL ---------- */
     .trust-proof{
       position:relative;
       padding:62px 0 64px;
@@ -596,25 +587,6 @@
       -webkit-overflow-scrolling: touch;
       justify-content: start;
     }
-    .flow-as-flip .features-grid::before{
-      content:"";
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      top: 50%;
-      height: 1px;
-      transform: translateY(-50%);
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(37,99,235,0.38),
-        rgba(229,57,53,0.42),
-        rgba(37,99,235,0.38),
-        transparent
-      );
-      opacity: 0.6;
-      pointer-events:none;
-    }
 
     .flow-as-flip .feature-card{
       display: block;
@@ -693,36 +665,23 @@
         overflow: visible;
         grid-auto-flow: unset;
         grid-auto-columns: unset;
-        grid-template-columns: repeat(3, 250px);
+        grid-template-columns: repeat(4, 260px);
         justify-content: center;
-        gap: 40px;
-        padding: 12px 0 0;
-      }
-      .flow-as-flip .feature-card{ width: 250px; height: 168px; }
-    }
-
-    /* ---- NEW: Capabilities flip cards (wrap into rows on desktop) ---- */
-    .cap-flip{
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    }
-    .cap-flip .features-intro p{ max-width: 980px; }
-    .cap-flip .features-grid::before{ display:none; }
-
-    @media (min-width: 900px){
-      .cap-flip .features-grid{
-        grid-template-columns: repeat(4, minmax(220px, 1fr));
         gap: 22px;
         padding: 12px 0 0;
       }
-      .cap-flip .feature-card{
-        width: auto;
-        height: 172px;
-      }
+      .flow-as-flip .feature-card{ width: 260px; height: 172px; }
     }
-    @media (min-width: 1160px){
-      .cap-flip .features-grid{
-        grid-template-columns: repeat(4, 260px);
-        justify-content:center;
+
+    /* ---- NEW: Capabilities flip cards - centered last row ---- */
+    .cap-flip{
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+    }
+    @media (min-width: 900px){
+      /* Center the last card by spanning 2 columns */
+      .cap-last{
+        grid-column: 2 / span 2;
       }
     }
 
@@ -1148,7 +1107,6 @@
   <div class="container">
     <h1>
       <span class="hero-title-main">Detect, prioritize, and remediate risks across your environment with unified vulnerability management.</span>
-      <span class="hero-title-sub">Assessment, mitigation &amp; compliance</span>
     </h1>
 
     <p>
@@ -1321,48 +1279,19 @@
   </div>
 </section>
 
-<!-- FLOW: 3 cards -->
-<section class="flow-as-flip" id="flow">
-  <div class="features-container">
-    <div class="features-intro">
-      <h2>From detection to remediation—fast</h2>
-      <p>Scan and discover, assess exploitability, then mitigate via patching, configuration hardening, and secure policies.</p>
-    </div>
-
-    <div class="flow-wrap">
-      <div class="features-grid" aria-label="Discover to enforce workflow">
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Scan">
-          <div class="feature-front"><h3>Scan</h3></div>
-          <div class="feature-back"><p>Discover exposed areas across local, remote, and roaming endpoints.</p></div>
-        </a>
-
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Assess">
-          <div class="feature-front"><h3>Assess</h3></div>
-          <div class="feature-back"><p>Prioritize based on severity, exploitability, age, and system impact.</p></div>
-        </a>
-
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Remediate">
-          <div class="feature-front"><h3>Remediate</h3></div>
-          <div class="feature-back"><p>Patch, harden configs, remove high-risk software, and mitigate zero-days.</p></div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEW: Crucial roadmap/FAQ-driven capabilities as flip cards -->
+<!-- WHAT'S NEW (Crucial capabilities) -->
 <section class="flow-as-flip cap-flip" id="capabilities">
   <div class="features-container">
     <div class="features-intro">
-      <h2>Crucial capabilities that elevate your remediation program</h2>
+      <h2>What’s new in VMP?</h2>
       <p>
-        Add depth to vulnerability operations with risk-driven prioritization, stronger compliance control, deeper scanning visibility,
-        and better reporting—so teams can focus on what truly reduces exposure.
+        New depth for vulnerability operations: risk-led prioritization, richer compliance control, deeper scan visibility, and
+        better reporting—so teams can focus on what truly reduces exposure.
       </p>
     </div>
 
     <div class="flow-wrap">
-      <div class="features-grid" aria-label="Crucial capabilities flip cards">
+      <div class="features-grid" aria-label="What's new in VMP flip cards">
         <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Risk source and prioritization">
           <div class="feature-front"><h3>Risk source &amp; prioritization</h3></div>
           <div class="feature-back"><p>Prioritize issues using risk sources, severity, and exploit signals—so the most dangerous gaps get fixed first.</p></div>
@@ -1393,7 +1322,7 @@
           <div class="feature-back"><p>Create dashboards that match your stakeholders—security, IT, and audit views in one place.</p></div>
         </a>
 
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Historical vulnerability analysis">
+        <a class="feature-card cap-last" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Historical vulnerability analysis">
           <div class="feature-front"><h3>Historical vulnerability analysis</h3></div>
           <div class="feature-back"><p>Track past vulnerabilities over time to prove remediation progress and spot repeat patterns quickly.</p></div>
         </a>
