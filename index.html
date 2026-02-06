@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vulnerability Manager Plus</title>
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* VMP palette: Red + Blue */
+      --blue:#0a66c2;
+      --blue-2:#2563eb;
+      --blue-deep:#0f2a44;
+
+      --red:#e53935;
+      --red-2:#ff5a5f;
+
+      --dark:#0f172a;
+      --muted:#6b7280;
+      --muted-2:#64748b;
+      --border:#e5e7eb;
+      --bg-light:#f8fafc;
+
+      --radius:16px;
+      --shadow-md:0 20px 40px rgba(15,23,42,0.10);
+
+      --container:1280px;
+      --pad-x:24px;
+      --section-y:72px;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html,body{ height:100%; }
+    body{
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--dark);
+      background:#fff;
+      line-height:1.6;
+    }
+    img,video{ max-width:100%; height:auto; display:block; }
+    a{ color:inherit; }
+
+    .container{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:0 var(--pad-x);
+    }
+
+    /* ---------- HEADER ---------- */
+    header{
+      border-bottom:1px solid var(--border);
+      background:#fff;
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter:saturate(140%) blur(8px);
+    }
+    .header-inner{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:16px var(--pad-x);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      width:100%;
+    }
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      white-space:nowrap;
+    }
+    .logo img{ height:26px; width:auto; }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      text-decoration:none;
+      color:var(--dark);
+      font-weight:700;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:background .18s ease, color .18s ease;
+    }
+    nav a:hover{
+      background:#f1f5f9;
+      color:#0b1220;
+    }
+
+    @media (max-width: 920px){
+      :root{ --pad-x:18px; }
+      .header-inner{
+        padding:14px var(--pad-x);
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      nav{
+        width:100%;
+        justify-content:flex-start;
+        gap:8px;
+      }
+      nav a{
+        background:#f8fafc;
+        border:1px solid rgba(15,23,42,0.06);
+      }
+    }
+
+    /* ---------- HERO ---------- */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:64px 0 66px;
+      text-align:center;
+
+      background:
+        radial-gradient(900px 420px at 20% 10%, rgba(255,90,95,0.22), transparent 60%),
+        radial-gradient(900px 420px at 80% 10%, rgba(37,99,235,0.22), transparent 62%),
+        linear-gradient(135deg, var(--blue-deep), #1e4f91, var(--blue-2));
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      top:-60px;
+      left:-60px;
+      width:520px;
+      height:520px;
+      background:radial-gradient(circle,rgba(255,255,255,0.06),transparent 70%);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      bottom:-70px;
+      right:-70px;
+      width:440px;
+      height:440px;
+      background:radial-gradient(circle,rgba(229,57,53,0.18),transparent 70%);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .hero > .container{ position:relative; z-index:1; }
+
+    .hero h1{
+      font-size:46px;
+      line-height:1.12;
+      max-width:1080px;
+      margin:0 auto 14px;
+      letter-spacing:-0.035em;
+    }
+    .hero-title-main{ color:#fff; font-weight:900; }
+    .hero-title-sub{
+      display:block;
+      margin-top:10px;
+      color:#dbeafe;
+      font-weight:700;
+      font-size:16px;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      opacity:0.95;
+    }
+    .hero p{
+      max-width:900px;
+      margin:0 auto 26px;
+      color:#eaf2ff;
+      font-size:16px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      justify-content:center;
+      gap:24px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+
+    .btn{
+      min-width:220px;
+      padding:16px 34px;
+      font-size:17px;
+      font-weight:900;
+      border-radius:16px;
+      text-decoration:none;
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+      display:inline-block;
+      text-align:center;
+      border:2px solid rgba(255,255,255,0.10);
+      user-select:none;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--red), var(--red-2));
+      color:#0b1220;
+      box-shadow:0 14px 30px rgba(229,57,53,0.28);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      filter:brightness(1.02);
+      animation:blinkGlow .9s ease-in-out infinite;
+    }
+    @keyframes blinkGlow{
+      0%,100%{
+        box-shadow:0 14px 30px rgba(229,57,53,0.28),
+                   0 0 0 rgba(255,255,255,0.0);
+      }
+      50%{
+        box-shadow:0 18px 44px rgba(229,57,53,0.38),
+                   0 0 22px rgba(255,255,255,0.22);
+      }
+    }
+    .btn:focus-visible{
+      outline:3px solid rgba(255,255,255,0.35);
+      outline-offset:3px;
+    }
+
+    @media (max-width: 820px){
+      .hero{ padding:52px 0 58px; }
+      .hero h1{ font-size:38px; }
+      .hero p{ margin-bottom:22px; }
+    }
+    @media (max-width: 480px){
+      .hero h1{ font-size:32px; }
+      .btn{ min-width: 260px; }
+    }
+
+    /* ---------- SCAN / ASSESS / MANAGE (ACP-ish cards) ---------- */
+    .triad{
+      padding:calc(var(--section-y) - 10px) 0;
+      background:#fff;
+      border-bottom:1px solid rgba(15,23,42,0.06);
+    }
+    .triad-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .triad-card{
+      background:#fff;
+      border:1px solid rgba(15,23,42,0.08);
+      border-radius:20px;
+      padding:22px 20px;
+      box-shadow:0 18px 44px rgba(15,23,42,0.06);
+      text-align:left;
+      position:relative;
+      overflow:hidden;
+      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .triad-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(800px 260px at 20% 18%, rgba(255,255,255,0.25), transparent 60%),
+        linear-gradient(135deg, rgba(37,99,235,0.18), rgba(229,57,53,0.14));
+      opacity:0;
+      transition:opacity .22s ease;
+      pointer-events:none;
+    }
+    .triad-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 26px 64px rgba(15,23,42,0.12);
+      border-color:rgba(229,57,53,0.45);
+    }
+    .triad-card:hover::before{ opacity:1; }
+    .triad-card .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      font-size:13px;
+      color:rgba(100,116,139,0.95);
+      position:relative;
+      z-index:1;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg,var(--blue-2),var(--red));
+      box-shadow:0 8px 18px rgba(37,99,235,0.25);
+    }
+    .triad-card h3{
+      margin-top:10px;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:-0.02em;
+      position:relative;
+      z-index:1;
+    }
+    .triad-card p{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:15px;
+      position:relative;
+      z-index:1;
+    }
+    @media (max-width: 1024px){
+      .triad-grid{ grid-template-columns:1fr; }
+    }
+
+    /* ---------- TRUST + LOGO CAROUSEL (worldmap like ACP) ---------- */
+    .trust-proof{
+      position:relative;
+      padding:62px 0 64px;
+      background:linear-gradient(180deg,#ffffff 0%,#f9fbff 55%,#ffffff 100%);
+      border-bottom:1px solid var(--border);
+      overflow:hidden;
+    }
+    .trust-proof::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:url("https://snehaa-p.github.io/acp-landing-page/images/worldmap.png");
+      background-repeat:no-repeat;
+      background-size:contain;
+      background-position:center center;
+      opacity:0.20;
+      filter:grayscale(100%) contrast(92%);
+      pointer-events:none;
+    }
+    .trust-proof::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(ellipse at center,
+        rgba(255,255,255,0.0) 35%,
+        rgba(255,255,255,0.78) 86%);
+      pointer-events:none;
+    }
+    .trust-proof > .container{ position:relative; z-index:1; }
+
+    .trust-head{ text-align:center; margin-bottom:18px; }
+    .trust-head h2{
+      font-size:34px;
+      font-weight:1000;
+      letter-spacing:-0.02em;
+      color:#0b1220;
+    }
+    .trust-kicker{
+      margin-top:8px;
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .logo-marquee{
+      margin: 22px auto 0;
+      max-width: 1180px;
+      position:relative;
+      overflow:hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(15,23,42,0.06);
+      background: rgba(255,255,255,0.70);
+      box-shadow: 0 18px 48px rgba(15,23,42,0.06);
+    }
+    .logo-marquee::before,
+    .logo-marquee::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      width:120px;
+      z-index:2;
+      pointer-events:none;
+    }
+    .logo-marquee::before{
+      left:0;
+      background:linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0));
+    }
+    .logo-marquee::after{
+      right:0;
+      background:linear-gradient(270deg, rgba(255,255,255,0.95), rgba(255,255,255,0));
+    }
+
+    .marquee-track{
+      display:flex;
+      gap:18px;
+      padding:18px 18px;
+      width:max-content;
+      animation: marquee 18s linear infinite;
+    }
+    .logo-marquee:hover .marquee-track{ animation-play-state:paused; }
+
+    @keyframes marquee{
+      from{ transform:translateX(0); }
+      to{ transform:translateX(-50%); }
+    }
+
+    .brand-card{
+      flex:0 0 auto;
+      width: 200px;
+      height: 82px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:16px;
+      background:#fff;
+      border:1px solid rgba(15,23,42,0.06);
+      box-shadow: 0 10px 22px rgba(15,23,42,0.06);
+      padding: 14px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .brand-card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(229,57,53,0.35);
+      box-shadow: 0 18px 38px rgba(15,23,42,0.10);
+    }
+    .brand-card img{
+      max-height: 44px;
+      width:auto;
+      filter: contrast(1.05);
+    }
+    .brand-card img.nhs{ max-height: 38px; }
+
+    .trust-spacer{ height:36px; }
+
+    .trust-metrics{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      text-align:center;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .metric { padding: 16px 12px; }
+
+    .metric strong{
+      display:inline-block;
+      font-weight:1000;
+      font-size:clamp(34px, 3.2vw, 44px);
+      letter-spacing:-0.05em;
+      background:linear-gradient(180deg, #0b1220, var(--blue-2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      transition:transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                 text-shadow 0.32s ease;
+    }
+    .metric span{
+      display:block;
+      margin-top:10px;
+      font-size:14px;
+      color:#64748b;
+    }
+    .metric:hover strong{
+      transform:scale(1.18);
+      text-shadow:0 18px 36px rgba(229,57,53,0.16);
+    }
+
+    @media (max-width: 1024px){
+      .trust-metrics{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width: 640px){
+      .trust-metrics{ grid-template-columns:1fr; }
+      .trust-proof::before{ display:none; }
+      .logo-marquee::before, .logo-marquee::after{ width:64px; }
+      .brand-card{ width: 180px; }
+    }
+
+    /* ---------- FEATURES (from VMP page) ---------- */
+    .features{
+      padding:var(--section-y) 0;
+      background:var(--bg-light);
+      text-align:center;
+    }
+    .feature-heading{
+      font-size:32px;
+      line-height:1.35;
+      max-width:1040px;
+      margin:0 auto 44px;
+      font-weight:900;
+      letter-spacing:-0.02em;
+      color:#0b1220;
+      padding:0 var(--pad-x);
+    }
+    .feature-heading .highlight{ color:var(--blue-2); font-weight:1000; }
+    .feature-heading .highlight2{ color:var(--red); font-weight:1000; }
+
+    .feature-grid{
+      max-width:var(--container);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
+      gap:24px;
+      padding:0 var(--pad-x);
+    }
+    .card{
+      background:#fff;
+      padding:26px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-md);
+      text-align:left;
+      transition:box-shadow .25s ease, background-color .25s ease, border-color .25s ease, transform .25s ease;
+      border:2px solid transparent;
+    }
+    .card:hover{
+      background-color:#f6fbff;
+      border-color:rgba(229,57,53,0.55);
+      box-shadow:0 28px 60px rgba(37,99,235,0.12);
+      transform:translateY(-2px);
+    }
+    .card h3{
+      margin-bottom:12px;
+      font-size:22px;
+      font-weight:1000;
+      letter-spacing:-0.01em;
+    }
+    .card p{
+      margin-bottom:18px;
+      color:var(--muted);
+      font-size:16px;
+    }
+    .feature-list{ list-style:none; }
+    .feature-list li{
+      margin-bottom:16px;
+      position:relative;
+      padding-left:24px;
+    }
+    .feature-list li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--blue-2);
+      font-weight:1000;
+    }
+    .feature-list strong{
+      display:block;
+      font-weight:900;
+      color:var(--dark);
+    }
+    .feature-list span{
+      display:block;
+      margin-top:6px;
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      font-size:14px;
+      color:var(--muted);
+      transition:max-height .35s ease, opacity .25s ease;
+    }
+    .card:hover .feature-list span{ max-height:160px; opacity:1; }
+    .feature-list a{ text-decoration:none; }
+    .feature-list a:hover{ color:var(--blue-2); text-decoration:underline; }
+
+    /* ================= FLOW SECTION (FLIP CARDS) ================= */
+    .flow-as-flip{
+      padding: var(--section-y) 24px;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+      text-align: center;
+    }
+    .flow-as-flip .features-container{
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+    .flow-as-flip .features-intro{
+      max-width: var(--container);
+      margin: 0 auto 36px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .flow-as-flip .features-intro h2{
+      font-size: 30px;
+      line-height: 1.3;
+      font-weight: 1000;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+    }
+    .flow-as-flip .features-intro p{
+      max-width: 820px;
+      margin: 10px auto 0;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .flow-as-flip .features-grid{
+      position: relative;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 230px;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 6px 6px 12px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      justify-content: start;
+    }
+    .flow-as-flip .features-grid::before{
+      content:"";
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      top: 50%;
+      height: 1px;
+      transform: translateY(-50%);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(37,99,235,0.38),
+        rgba(229,57,53,0.42),
+        rgba(37,99,235,0.38),
+        transparent
+      );
+      opacity: 0.6;
+      pointer-events:none;
+    }
+
+    .flow-as-flip .feature-card{
+      display: block;
+      width: 230px;
+      height: 168px;
+      scroll-snap-align: start;
+      position: relative;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .flow-as-flip .feature-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(800px 260px at 20% 18%, rgba(255,255,255,0.20), transparent 60%),
+        linear-gradient(135deg, var(--blue-deep) 0%, #1e4f91 55%, rgba(229,57,53,0.92) 120%);
+      opacity:0;
+      transition:opacity 0.25s ease;
+    }
+    .flow-as-flip .feature-front,
+    .flow-as-flip .feature-back{
+      position:absolute;
+      inset:0;
+      padding: 22px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      transition:opacity 0.25s ease, transform 0.25s ease;
+    }
+    .flow-as-flip .feature-front h3{
+      margin: 0;
+      font-size: 16px;
+      font-weight: 1000;
+      color: var(--blue-2);
+    }
+    .flow-as-flip .feature-back{
+      opacity: 0;
+      transform: translateY(16px);
+      color: #ffffff;
+    }
+    .flow-as-flip .feature-back p{
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      max-width: 28ch;
+      color: #ffe9ea;
+    }
+
+    .flow-as-flip .feature-card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 26px 60px rgba(15, 23, 42, 0.16);
+    }
+    .flow-as-flip .feature-card:hover::before{ opacity: 1; }
+    .flow-as-flip .feature-card:hover .feature-front{ opacity: 0; transform: translateY(-6px); }
+    .flow-as-flip .feature-card:hover .feature-back{ opacity: 1; transform: translateY(0); }
+    .flow-as-flip .feature-card:hover .feature-front h3{ color:#fff; }
+
+    .flow-as-flip .features-grid::-webkit-scrollbar{ height: 10px; }
+    .flow-as-flip .features-grid::-webkit-scrollbar-thumb{
+      background: rgba(100,116,139,0.25);
+      border-radius: 999px;
+    }
+    .flow-as-flip .features-grid::-webkit-scrollbar-track{ background: transparent; }
+
+    @media (min-width: 900px){
+      .flow-as-flip .features-grid{
+        overflow: visible;
+        grid-auto-flow: unset;
+        grid-auto-columns: unset;
+        grid-template-columns: repeat(3, 250px);
+        justify-content: center;
+        gap: 40px;
+        padding: 12px 0 0;
+      }
+      .flow-as-flip .feature-card{ width: 250px; height: 168px; }
+    }
+
+    /* ---------- VIDEO PLACEHOLDER ---------- */
+    .video-placeholder{
+      padding: var(--section-y) 0;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+    }
+    .video-wrap{
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      text-align:center;
+    }
+    .video-wrap h2{
+      font-size: 32px;
+      font-weight: 1000;
+      letter-spacing: -0.02em;
+      color:#0b1220;
+      margin-bottom: 10px;
+    }
+    .video-wrap p{
+      max-width: 860px;
+      margin: 0 auto 22px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .video-box{
+      max-width: 1040px;
+      margin: 0 auto;
+      border-radius: 22px;
+      border: 1px dashed rgba(15,23,42,0.18);
+      background:
+        radial-gradient(900px 360px at 20% 10%, rgba(37,99,235,0.10), transparent 62%),
+        radial-gradient(900px 360px at 80% 0%, rgba(229,57,53,0.10), transparent 65%),
+        linear-gradient(180deg,#f8fafc 0%, #ffffff 65%);
+      box-shadow: 0 18px 48px rgba(15,23,42,0.08);
+      padding: 44px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 14px;
+      flex-direction:column;
+    }
+    .video-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(15,23,42,0.08);
+      font-weight: 900;
+      color: rgba(100,116,139,0.95);
+    }
+    .play-dot{
+      width:12px;height:12px;border-radius:50%;
+      background: linear-gradient(135deg,var(--blue-2),var(--red));
+      box-shadow: 0 10px 20px rgba(229,57,53,0.18);
+    }
+    .video-note{
+      font-size:14px;
+      color: var(--muted-2);
+      max-width: 640px;
+    }
+
+    /* ---------- PRICING (from VMP page) ---------- */
+    .pricing-compare{
+      padding: calc(var(--section-y) - 12px) 0;
+      background:
+        radial-gradient(900px 380px at 20% 0%, rgba(229,57,53,0.10), transparent 60%),
+        radial-gradient(900px 380px at 80% 10%, rgba(37,99,235,0.10), transparent 62%),
+        linear-gradient(180deg,#f7faff 0%, #ffffff 65%);
+    }
+
+    .pricing-wrap{
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      text-align: center;
+    }
+
+    .pricing-title{
+      font-size: 36px;
+      font-weight: 1000;
+      letter-spacing: -0.02em;
+      color: #0b1220;
+      margin-bottom: 10px;
+    }
+
+    .pricing-sub{
+      max-width: 920px;
+      margin: 0 auto 34px;
+      font-size: 16px;
+      color: var(--muted-2);
+      line-height: 1.7;
+    }
+
+    .compare-card{
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: 22px;
+      box-shadow: 0 18px 48px rgba(15,23,42,0.10);
+      overflow: hidden;
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .compare-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 360px at 18% 10%, rgba(229,57,53,0.12), transparent 62%),
+        radial-gradient(900px 360px at 78% 0%, rgba(37,99,235,0.10), transparent 65%);
+      pointer-events:none;
+    }
+
+    .compare-cols{
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .plan-col{
+      position: relative;
+      padding: 26px 24px 22px;
+      text-align: left;
+    }
+
+    .plan-col + .plan-col{
+      border-left: 1px solid rgba(15,23,42,0.08);
+      background: rgba(229,57,53,0.028);
+    }
+
+    .plan-col h3{
+      font-size: 22px;
+      font-weight: 1000;
+      letter-spacing: -0.01em;
+      margin: 6px 0 14px;
+      color: #0b1220;
+    }
+
+    .plan-price{ margin-bottom: 12px; }
+
+    .plan-kicker{
+      display: inline-block;
+      font-size: 13px;
+      font-style: italic;
+      letter-spacing: 0.06em;
+      color: rgba(100,116,139,0.95);
+      margin-bottom: 6px;
+    }
+
+    .plan-amount-row{
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .plan-amount-row .amt{
+      font-size: 36px;
+      font-weight: 1000;
+      letter-spacing: -0.03em;
+      color: #0b1220;
+    }
+
+    .plan-amount-row .unit{
+      font-size: 16px;
+      color: var(--muted-2);
+      font-weight: 800;
+    }
+
+    .plan-divider{
+      height: 1px;
+      background: rgba(229,57,53,0.28);
+      margin: 14px 0 18px;
+    }
+
+    .plan-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .plan-list li{
+      position: relative;
+      padding-left: 28px;
+      color: #0f172a;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .plan-list li::before{
+      content:"✓";
+      position:absolute;
+      left: 0;
+      top: 0;
+      font-weight: 1000;
+      color: var(--blue-2);
+    }
+
+    .plan-cta-row{
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .plan-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 1000;
+      text-decoration: none;
+      min-width: 220px;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .plan-btn.outline{
+      background: #ffffff;
+      color: var(--blue-2);
+      border: 1.5px solid rgba(37,99,235,0.55);
+      box-shadow: 0 10px 26px rgba(15,23,42,0.08);
+    }
+
+    .plan-btn.solid{
+      color: #0b1220;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--red), var(--red-2));
+      box-shadow: 0 18px 44px rgba(229,57,53,0.22);
+    }
+
+    .plan-btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 22px 56px rgba(15,23,42,0.16);
+      filter: brightness(1.02);
+    }
+
+    .pricing-footnote{
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--muted-2);
+    }
+
+    @media (max-width: 820px){
+      .compare-cols{ grid-template-columns: 1fr; }
+      .plan-col + .plan-col{
+        border-left: none;
+        border-top: 1px solid rgba(15,23,42,0.08);
+      }
+    }
+
+    /* ---------- REQUEST DEMO BANNER (below pricing) ---------- */
+    .request-demo-band{
+      padding: 22px 0 0;
+      background: transparent;
+    }
+    .request-demo-inner{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 var(--pad-x) 8px;
+    }
+    .request-demo-card{
+      background: #fff;
+      border: 1px solid rgba(15,23,42,0.10);
+      border-radius: 26px;
+      box-shadow: 0 14px 44px rgba(15,23,42,0.08);
+      padding: 22px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 18px;
+    }
+    .request-demo-card h3{
+      margin:0;
+      font-size: 20px;
+      font-weight: 1000;
+      letter-spacing: -0.02em;
+      color:#0b1220;
+    }
+    .request-demo-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(15,23,42,0.16);
+      background:#fff;
+      font-weight: 1000;
+      text-decoration:none;
+      gap: 10px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      white-space:nowrap;
+    }
+    .request-demo-btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.12);
+      border-color: rgba(229,57,53,0.35);
+    }
+    @media (max-width: 760px){
+      .request-demo-card{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .request-demo-btn{ width:100%; justify-content:center; }
+    }
+
+    /* ---------- FAQ SECTION ---------- */
+    .faq-section{
+      padding:var(--section-y) 0;
+      background:#f8fafc;
+      text-align:center;
+      border-top:1px solid rgba(15,23,42,0.06);
+    }
+    .faq-section h2{
+      font-size:36px;
+      font-weight:1000;
+      margin-bottom:8px;
+      padding:0 var(--pad-x);
+    }
+    .faq-subtext{
+      font-size:16px;
+      color:var(--muted-2);
+      margin-bottom:32px;
+      padding:0 var(--pad-x);
+    }
+    .faq-carousel{
+      max-width:1040px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:0 var(--pad-x);
+    }
+    .faq-track{
+      width:100%;
+      min-height:240px;
+      position:relative;
+      display:flex;
+      align-items:center;
+    }
+    .faq-item{
+      background:#fff;
+      padding:26px;
+      border-radius:16px;
+      text-align:left;
+      box-shadow:0 20px 44px rgba(15,23,42,0.06);
+      border:1px solid rgba(15,23,42,0.06);
+      display:none;
+      animation:fadeUp 220ms ease both;
+      width:100%;
+    }
+    .faq-item.active{ display:block; }
+    .faq-item h3{ font-size:18px; font-weight:1000; margin-bottom:10px; }
+    .faq-item p{ font-size:15px; line-height:1.7; color:#475569; }
+    .faq-item a{ color:var(--blue-2); text-decoration:underline; }
+
+    .faq-nav{
+      border:none;
+      background:#fff;
+      font-size:24px;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      color:#64748b;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(15,23,42,0.12);
+      transition:transform .18s ease, color .18s ease;
+      flex:0 0 auto;
+      transform: translateY(-2px);
+    }
+    .faq-nav:hover{ color:var(--red); transform:scale(1.08); }
+    .faq-nav:focus-visible{ outline:3px solid rgba(229,57,53,0.28); outline-offset:3px; }
+
+    @media (max-width: 640px){
+      .faq-carousel{ flex-direction:column; }
+      .faq-nav{ width:100%; border-radius:14px; height:44px; }
+      .faq-section h2{ font-size:28px; }
+    }
+
+    @keyframes fadeUp{
+      from{ opacity:0; transform:translateY(8px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer{
+      padding:22px var(--pad-x);
+      text-align:center;
+      color:var(--muted);
+      border-top:1px solid var(--border);
+      font-size:14px;
+      background:#fff;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <img src="Vulnerability%20Manager%20Plus_Black.png" alt="Vulnerability Manager Plus logo">
+    </div>
+
+    <nav aria-label="Primary">
+      <a href="https://www.manageengine.com/vulnerability-management/features.html">Features</a>
+      <a href="https://www.manageengine.com/vulnerability-management/request-demo.html">Demo</a>
+      <a href="https://www.manageengine.com/vulnerability-management/help.html">Documents</a>
+      <a href="https://www.manageengine.com/vulnerability-management/get-quote.html">Get Quote</a>
+      <a href="https://www.manageengine.com/vulnerability-management/support.html">Support</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="overview">
+  <div class="container">
+    <h1>
+      <span class="hero-title-main">Detect, prioritize, and remediate risks across your environment with unified vulnerability management.</span>
+      <span class="hero-title-sub">Assessment, mitigation &amp; compliance</span>
+    </h1>
+
+    <p>
+      Vulnerability Manager Plus is a multi-OS vulnerability management and compliance solution with built-in remediation.
+      Get comprehensive coverage, continual visibility, rigorous assessment, and integral remediation of threats and vulnerabilities—from a single console.
+    </p>
+
+    <div class="hero-buttons" aria-label="Primary actions">
+      <a
+        href="https://www.manageengine.com/vulnerability-management/free-trial.html?vmp-home-download"
+        class="btn btn-primary"
+        target="_blank"
+        rel="noopener"
+      >Download</a>
+
+      <a
+        href="https://www.manageengine.com/vulnerability-management/free-trial.html?vmp-home-signup"
+        class="btn btn-primary"
+        target="_blank"
+        rel="noopener"
+      >Sign up</a>
+    </div>
+  </div>
+</section>
+
+<section class="triad" aria-label="Scan assess manage">
+  <div class="container">
+    <div class="triad-grid">
+      <div class="triad-card">
+        <div class="kicker"><span class="dot"></span>Scan</div>
+        <h3>Scan and discover exposed areas</h3>
+        <p>Scan local and remote office endpoints as well as roaming devices to identify exposed areas and risk surfaces.</p>
+      </div>
+
+      <div class="triad-card">
+        <div class="kicker"><span class="dot"></span>Assess</div>
+        <h3>Prioritize what’s likely to be exploited</h3>
+        <p>Leverage attacker-based analytics to prioritize areas that are more likely to be exploited by an attacker.</p>
+      </div>
+
+      <div class="triad-card">
+        <div class="kicker"><span class="dot"></span>Manage</div>
+        <h3>Mitigate security loopholes</h3>
+        <p>Mitigate the exploitation of security loopholes in your network and prevent further loopholes from developing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-proof" aria-label="Trusted by leading brands">
+  <div class="container">
+    <div class="trust-head">
+      <h2>Trusted by leading brands</h2>
+      <p class="trust-kicker">Across industries and geographies</p>
+    </div>
+
+    <!-- Moving carousel (auto-scroll, pause on hover) -->
+    <div class="logo-marquee" aria-label="Customer logos carousel">
+      <div class="marquee-track" id="marqueeTrack">
+        <!-- Set A -->
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/capgimini-logo.png" alt="Capgemini logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/mediaset-espana-logo.png" alt="Mediaset España logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/canon-logo.png" alt="Canon logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/escap-logo.png" alt="ESCAP logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/unicredit-bank-logo.png" alt="UniCredit Bank logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/fujitec-logo.png" alt="Fujitec logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/sukarne-logo.png" alt="SuKarne logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/invicti-logo.png" alt="Invicti logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/energyag-logo.png" alt="Energie AG logo"></div>
+        <div class="brand-card"><img class="nhs" src="https://www.manageengine.com/ems/images/logo/nhs-logo.png" alt="NHS logo"></div>
+
+        <!-- Set B (duplicate for seamless loop) -->
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/capgimini-logo.png" alt="Capgemini logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/mediaset-espana-logo.png" alt="Mediaset España logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/canon-logo.png" alt="Canon logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/escap-logo.png" alt="ESCAP logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/unicredit-bank-logo.png" alt="UniCredit Bank logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/fujitec-logo.png" alt="Fujitec logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/sukarne-logo.png" alt="SuKarne logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/invicti-logo.png" alt="Invicti logo"></div>
+        <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/energyag-logo.png" alt="Energie AG logo"></div>
+        <div class="brand-card"><img class="nhs" src="https://www.manageengine.com/ems/images/logo/nhs-logo.png" alt="NHS logo"></div>
+      </div>
+    </div>
+
+    <div class="trust-spacer" aria-hidden="true"></div>
+
+    <!-- Embossed hover metrics (ACP-like). Replace numbers if you want exact VMP stats. -->
+    <div class="trust-metrics" aria-label="Key outcomes">
+      <div class="metric">
+        <strong>Multi-OS</strong>
+        <span>coverage across endpoints</span>
+      </div>
+      <div class="metric">
+        <strong>Built-in</strong>
+        <span>remediation workflows</span>
+      </div>
+      <div class="metric">
+        <strong>75+</strong>
+        <span>CIS benchmarks supported</span>
+      </div>
+      <div class="metric">
+        <strong>500+</strong>
+        <span>third-party apps patchable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <h2 class="feature-heading">
+    Reduce risk faster with <span class="highlight">prioritized insights</span> and <span class="highlight2">built-in remediation</span>.
+  </h2>
+
+  <div class="feature-grid">
+    <div class="card">
+      <h3>Core vulnerability management</h3>
+      <p>Identify real risks, prioritize exploitability, and close gaps with integrated remediation.</p>
+      <ul class="feature-list">
+        <li>
+          <strong><a href="https://www.manageengine.com/vulnerability-management/features.html">Vulnerability assessment</a></strong>
+          <span>Assess and prioritize vulnerabilities based on exploitability, severity, age, affected system count, and fix availability.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/vulnerability-management/features.html">Executive reports</a></strong>
+          <span>Review security posture and make informed decisions with holistic, audit-ready reports.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/vulnerability-management/features.html">Deployment policies</a></strong>
+          <span>Decide when to patch, what to patch, and how to patch using flexible deployment controls.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Compliance & secure baselines</h3>
+      <p>Meet security and audit objectives with benchmarked controls and remediation insights.</p>
+      <ul class="feature-list">
+        <li>
+          <strong><a href="https://www.manageengine.com/vulnerability-management/features.html">Compliance</a></strong>
+          <span>Audit and maintain systems in line with 75+ CIS benchmarks; identify violations and view remediation guidance.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/vulnerability-management/features.html">Security configuration management</a></strong>
+          <span>Enforce complex passwords, least privileges, and hardening controls aligned with CIS and STIG guidelines.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/vulnerability-management/features.html">Role-based administration</a></strong>
+          <span>Delegate tasks with defined roles and responsibilities across security and IT teams.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Remediation that goes beyond scanning</h3>
+      <p>Reduce exposure by patching, hardening, and removing risky software—centrally.</p>
+      <ul class="feature-list">
+        <li>
+          <strong><a href="https://www.manageengine.com/vulnerability-management/features.html">Patch management</a></strong>
+          <span>Download, test, and deploy patches to Windows, Mac, Linux, and 500+ third-party apps with no extra cost.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/vulnerability-management/features.html">High-risk software audit</a></strong>
+          <span>Identify and uninstall unsafe software like remote desktop sharing tools, end-of-life, and peer-to-peer apps.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/vulnerability-management/features.html">Zero-day vulnerability mitigation</a></strong>
+          <span>Deploy pre-built tested scripts to secure endpoints without waiting for vendor patches.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="flow-as-flip" id="flow">
+  <div class="features-container">
+    <div class="features-intro">
+      <h2>From detection to remediation—fast</h2>
+      <p>Scan and discover, assess exploitability, then mitigate via patching, configuration hardening, and secure policies.</p>
+    </div>
+
+    <div class="flow-wrap">
+      <div class="features-grid" aria-label="Discover to enforce workflow">
+        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Scan">
+          <div class="feature-front"><h3>Scan</h3></div>
+          <div class="feature-back"><p>Discover exposed areas across local, remote, and roaming endpoints.</p></div>
+        </a>
+
+        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Assess">
+          <div class="feature-front"><h3>Assess</h3></div>
+          <div class="feature-back"><p>Prioritize based on severity, exploitability, age, and system impact.</p></div>
+        </a>
+
+        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Remediate">
+          <div class="feature-front"><h3>Remediate</h3></div>
+          <div class="feature-back"><p>Patch, harden configs, remove high-risk software, and mitigate zero-days.</p></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="video-placeholder" id="videos">
+  <div class="video-wrap">
+    <h2>See VMP in action</h2>
+    <p>Leave this section as a placeholder for your upcoming video carousel. You can drop the video embeds later without changing the page layout.</p>
+
+    <div class="video-box" aria-label="Video carousel placeholder">
+      <div class="video-pill"><span class="play-dot"></span> Video carousel placeholder</div>
+      <div class="video-note">Replace this box with your carousel/iframe embeds when ready.</div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-compare" id="pricing">
+  <div class="pricing-wrap">
+    <h2 class="pricing-title">Available in 2 editions</h2>
+    <p class="pricing-sub">
+      Start with Professional for vulnerability scanning and security posture management, or choose Enterprise for broader remediation workflows—built-in patching, compliance, and more.
+    </p>
+
+    <div class="compare-card" aria-label="Plans comparison">
+      <div class="compare-cols">
+        <div class="plan-col">
+          <h3>Professional Edition</h3>
+
+          <div class="plan-price">
+            <span class="plan-kicker">STARTS AT</span>
+            <div class="plan-amount-row">
+              <span class="amt">$0.9</span>
+              <span class="unit">/ device / month</span>
+            </div>
+          </div>
+
+          <div class="plan-divider" aria-hidden="true"></div>
+
+          <ul class="plan-list">
+            <li>Vulnerability scanning and assessment</li>
+            <li>System misconfiguration detection</li>
+            <li>High-risk software detection</li>
+            <li>Secure configuration deployment</li>
+            <li>Server misconfiguration detection &amp; resolution</li>
+            <li>Vulnerability reports</li>
+          </ul>
+
+          <div class="plan-cta-row">
+            <a href="https://www.manageengine.com/vulnerability-management/get-quote.html" class="plan-btn outline">Get quote</a>
+          </div>
+        </div>
+
+        <div class="plan-col">
+          <h3>Enterprise Edition</h3>
+
+          <div class="plan-price">
+            <span class="plan-kicker">STARTS AT</span>
+            <div class="plan-amount-row">
+              <span class="amt">$1.55</span>
+              <span class="unit">/ device / month</span>
+            </div>
+          </div>
+
+          <div class="plan-divider" aria-hidden="true"></div>
+
+          <ul class="plan-list">
+            <li>All Professional Edition features</li>
+            <li>Built-in patch management</li>
+            <li>Automated patch deployment</li>
+            <li>High-risk software uninstallation</li>
+            <li>Zero-day vulnerability mitigation</li>
+            <li>Compliance &amp; Network Devices</li>
+          </ul>
+
+          <div class="plan-cta-row">
+            <a href="https://www.manageengine.com/vulnerability-management/get-quote.html" class="plan-btn solid">Get quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="pricing-footnote">
+      For exact pricing based on device count and deployment, use
+      <a href="https://www.manageengine.com/vulnerability-management/get-quote.html" target="_blank" rel="noopener">Get Quote</a>.
+    </p>
+
+    <!-- Request demo band (as per screenshot placement: right below pricing) -->
+    <div class="request-demo-band" aria-label="Request demo banner">
+      <div class="request-demo-inner">
+        <div class="request-demo-card">
+          <h3>Want to see how vulnerability remediation works in your environment?</h3>
+          <a class="request-demo-btn" href="https://www.manageengine.com/vulnerability-management/request-demo.html" target="_blank" rel="noopener">
+            Request a demo <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <p class="faq-subtext">Answers to common evaluation questions</p>
+
+    <div class="faq-carousel">
+      <button class="faq-nav prev" type="button" aria-label="Previous FAQ">‹</button>
+
+      <div class="faq-track">
+        <div class="faq-item active">
+          <h3>Can I try Vulnerability Manager Plus before purchasing?</h3>
+          <p>
+            Yes. You can start with a free trial via
+            <a href="https://www.manageengine.com/vulnerability-management/free-trial.html?vmp-home-signup" target="_blank" rel="noopener">Sign up</a>
+            or
+            <a href="https://www.manageengine.com/vulnerability-management/free-trial.html?vmp-home-download" target="_blank" rel="noopener">Download</a>.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I get a demo of Vulnerability Manager Plus?</h3>
+          <p>
+            Yes—request a personalized
+            <a href="https://www.manageengine.com/vulnerability-management/request-demo.html" target="_blank" rel="noopener">demo</a>
+            to see scanning, prioritization, and remediation workflows in action.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Where can I find documentation and setup guides?</h3>
+          <p>
+            Access product help, guides, and resources in
+            <a href="https://www.manageengine.com/vulnerability-management/help.html" target="_blank" rel="noopener">Documents</a>.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Where can I learn what features are available?</h3>
+          <p>
+            View the complete feature set here:
+            <a href="https://www.manageengine.com/vulnerability-management/features.html" target="_blank" rel="noopener">Features</a>.
+            For pricing and sizing, request a
+            <a href="https://www.manageengine.com/vulnerability-management/get-quote.html" target="_blank" rel="noopener">quote</a>.
+          </p>
+        </div>
+      </div>
+
+      <button class="faq-nav next" type="button" aria-label="Next FAQ">›</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Vulnerability Manager Plus. All rights reserved.
+</footer>
+
+<script>
+  /* ================= FAQ CAROUSEL ================= */
+  const faqItems = document.querySelectorAll(".faq-item");
+  const faqPrev = document.querySelector(".faq-nav.prev");
+  const faqNext = document.querySelector(".faq-nav.next");
+  let faqIndex = 0;
+
+  function showFaq(index) {
+    faqIndex = (index + faqItems.length) % faqItems.length;
+    faqItems.forEach((item) => item.classList.remove("active"));
+    faqItems[faqIndex].classList.add("active");
+  }
+
+  faqNext.addEventListener("click", () => showFaq(faqIndex + 1));
+  faqPrev.addEventListener("click", () => showFaq(faqIndex - 1));
+  showFaq(0);
+</script>
+
+</body>
+</html>
