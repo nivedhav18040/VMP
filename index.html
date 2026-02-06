@@ -39,12 +39,14 @@
     body{
       font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--dark);
-      background:#fff;
+      background:
+        radial-gradient(900px 520px at 14% -10%, rgba(37,99,235,0.08), transparent 60%),
+        radial-gradient(900px 520px at 86% 0%, rgba(229,57,53,0.08), transparent 60%),
+        #fff;
       line-height:1.6;
     }
     img,video{ max-width:100%; height:auto; display:block; }
     a{ color:inherit; }
-
     .container{
       max-width:var(--container);
       margin:0 auto;
@@ -54,11 +56,11 @@
     /* ---------- HEADER ---------- */
     header{
       border-bottom:1px solid var(--border);
-      background:#fff;
+      background:rgba(255,255,255,0.86);
       position:sticky;
       top:0;
       z-index:30;
-      backdrop-filter:saturate(140%) blur(8px);
+      backdrop-filter:saturate(140%) blur(10px);
     }
     .header-inner{
       max-width:var(--container);
@@ -88,14 +90,15 @@
     nav a{
       text-decoration:none;
       color:var(--dark);
-      font-weight:700;
+      font-weight:800;
       padding:8px 10px;
       border-radius:10px;
-      transition:background .18s ease, color .18s ease;
+      transition:background .18s ease, color .18s ease, box-shadow .18s ease;
     }
     nav a:hover{
       background:#f1f5f9;
       color:#0b1220;
+      box-shadow: 0 10px 22px rgba(15,23,42,0.06);
     }
 
     @media (max-width: 920px){
@@ -227,7 +230,10 @@
     /* ---------- SCAN / ASSESS / MANAGE ---------- */
     .triad{
       padding:calc(var(--section-y) - 10px) 0;
-      background:#fff;
+      background:
+        radial-gradient(900px 420px at 15% 0%, rgba(37,99,235,0.08), transparent 60%),
+        radial-gradient(900px 420px at 85% 10%, rgba(229,57,53,0.08), transparent 62%),
+        #fff;
       border-bottom:1px solid rgba(15,23,42,0.06);
     }
     .triad-grid{
@@ -303,7 +309,10 @@
     .trust-proof{
       position:relative;
       padding:62px 0 64px;
-      background:linear-gradient(180deg,#ffffff 0%,#f9fbff 55%,#ffffff 100%);
+      background:
+        radial-gradient(900px 420px at 12% 0%, rgba(37,99,235,0.08), transparent 60%),
+        radial-gradient(900px 420px at 88% 0%, rgba(229,57,53,0.08), transparent 60%),
+        linear-gradient(180deg,#ffffff 0%,#f9fbff 55%,#ffffff 100%);
       border-bottom:1px solid var(--border);
       overflow:hidden;
     }
@@ -353,7 +362,10 @@
       overflow:hidden;
       border-radius: 22px;
       border: 1px solid rgba(15,23,42,0.06);
-      background: rgba(255,255,255,0.70);
+      background:
+        radial-gradient(900px 240px at 10% 0%, rgba(37,99,235,0.06), transparent 62%),
+        radial-gradient(900px 240px at 90% 0%, rgba(229,57,53,0.06), transparent 62%),
+        rgba(255,255,255,0.70);
       box-shadow: 0 18px 48px rgba(15,23,42,0.06);
     }
     .logo-marquee::before,
@@ -461,7 +473,10 @@
     /* ---------- FEATURES ---------- */
     .features{
       padding:var(--section-y) 0;
-      background:var(--bg-light);
+      background:
+        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.08), transparent 62%),
+        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.08), transparent 62%),
+        var(--bg-light);
       text-align:center;
     }
     .feature-heading{
@@ -493,9 +508,23 @@
       text-align:left;
       transition:box-shadow .25s ease, background-color .25s ease, border-color .25s ease, transform .25s ease;
       border:2px solid transparent;
+      position:relative;
+      overflow:hidden;
     }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 260px at 20% 0%, rgba(37,99,235,0.06), transparent 62%),
+        radial-gradient(900px 260px at 80% 0%, rgba(229,57,53,0.06), transparent 62%);
+      opacity:0;
+      transition:opacity .25s ease;
+      pointer-events:none;
+    }
+    .card:hover::before{ opacity:1; }
     .card:hover{
-      background-color:#f6fbff;
+      background-color:#ffffff;
       border-color:rgba(229,57,53,0.55);
       box-shadow:0 28px 60px rgba(37,99,235,0.12);
       transform:translateY(-2px);
@@ -505,13 +534,17 @@
       font-size:22px;
       font-weight:1000;
       letter-spacing:-0.01em;
+      position:relative;
+      z-index:1;
     }
     .card p{
       margin-bottom:18px;
       color:var(--muted);
       font-size:16px;
+      position:relative;
+      z-index:1;
     }
-    .feature-list{ list-style:none; }
+    .feature-list{ list-style:none; position:relative; z-index:1; }
     .feature-list li{
       margin-bottom:16px;
       position:relative;
@@ -544,10 +577,13 @@
     .feature-list a{ text-decoration:none; }
     .feature-list a:hover{ color:var(--blue-2); text-decoration:underline; }
 
-    /* ================= FLIP CARD BASE (reused) ================= */
+    /* ================= FLIP CARDS (base) ================= */
     .flow-as-flip{
       padding: var(--section-y) 24px;
-      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      background:
+        radial-gradient(900px 520px at 12% 0%, rgba(37,99,235,0.08), transparent 62%),
+        radial-gradient(900px 520px at 88% 0%, rgba(229,57,53,0.08), transparent 62%),
+        linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
       border-bottom: 1px solid rgba(15,23,42,0.06);
       text-align: center;
     }
@@ -557,42 +593,29 @@
     }
     .flow-as-flip .features-intro{
       max-width: var(--container);
-      margin: 0 auto 36px;
+      margin: 0 auto 30px;
       padding: 0 24px;
       text-align: center;
     }
     .flow-as-flip .features-intro h2{
-      font-size: 30px;
-      line-height: 1.3;
+      font-size: 32px;
+      line-height: 1.25;
       font-weight: 1000;
       letter-spacing: -0.02em;
       color: #0f172a;
     }
     .flow-as-flip .features-intro p{
-      max-width: 860px;
+      max-width: 900px;
       margin: 10px auto 0;
       font-size: 16px;
       color: var(--muted);
     }
 
-    .flow-as-flip .features-grid{
-      position: relative;
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 230px;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 6px 6px 12px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      justify-content: start;
-    }
-
-    .flow-as-flip .feature-card{
+    /* Card styling */
+    .feature-card{
       display: block;
-      width: 230px;
-      height: 168px;
-      scroll-snap-align: start;
+      width: 270px;
+      height: 172px;
       position: relative;
       border-radius: 18px;
       background: #ffffff;
@@ -600,9 +623,20 @@
       box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
       overflow: hidden;
       text-decoration: none;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
-    .flow-as-flip .feature-card::before{
+    .feature-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 260px at 20% 0%, rgba(37,99,235,0.07), transparent 62%),
+        radial-gradient(900px 260px at 80% 0%, rgba(229,57,53,0.07), transparent 62%);
+      opacity:0;
+      transition:opacity .25s ease;
+      pointer-events:none;
+    }
+    .feature-card::before{
       content:"";
       position:absolute;
       inset:0;
@@ -612,8 +646,8 @@
       opacity:0;
       transition:opacity 0.25s ease;
     }
-    .flow-as-flip .feature-front,
-    .flow-as-flip .feature-back{
+    .feature-front,
+    .feature-back{
       position:absolute;
       inset:0;
       padding: 22px 18px;
@@ -623,20 +657,21 @@
       justify-content:center;
       text-align:center;
       transition:opacity 0.25s ease, transform 0.25s ease;
+      z-index:1;
     }
-    .flow-as-flip .feature-front h3{
+    .feature-front h3{
       margin: 0;
       font-size: 16px;
       font-weight: 1000;
       color: var(--blue-2);
       letter-spacing:-0.01em;
     }
-    .flow-as-flip .feature-back{
+    .feature-back{
       opacity: 0;
       transform: translateY(16px);
       color: #ffffff;
     }
-    .flow-as-flip .feature-back p{
+    .feature-back p{
       margin: 0;
       font-size: 13.5px;
       line-height: 1.55;
@@ -644,51 +679,58 @@
       color: #ffe9ea;
     }
 
-    .flow-as-flip .feature-card:hover{
+    .feature-card:hover{
       transform: translateY(-6px);
+      border-color: rgba(229,57,53,0.35);
       box-shadow: 0 26px 60px rgba(15, 23, 42, 0.16);
     }
-    .flow-as-flip .feature-card:hover::before{ opacity: 1; }
-    .flow-as-flip .feature-card:hover .feature-front{ opacity: 0; transform: translateY(-6px); }
-    .flow-as-flip .feature-card:hover .feature-back{ opacity: 1; transform: translateY(0); }
-    .flow-as-flip .feature-card:hover .feature-front h3{ color:#fff; }
+    .feature-card:hover::after{ opacity:1; }
+    .feature-card:hover::before{ opacity: 1; }
+    .feature-card:hover .feature-front{ opacity: 0; transform: translateY(-6px); }
+    .feature-card:hover .feature-back{ opacity: 1; transform: translateY(0); }
+    .feature-card:hover .feature-front h3{ color:#fff; }
 
-    .flow-as-flip .features-grid::-webkit-scrollbar{ height: 10px; }
-    .flow-as-flip .features-grid::-webkit-scrollbar-thumb{
-      background: rgba(100,116,139,0.25);
-      border-radius: 999px;
+    /* ---- FIXED ALIGNMENT: 4 on top, 3 below centered ---- */
+    .capabilities-grid{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center; /* centers second row of 3 automatically */
+      gap:24px;
+      padding: 6px 0 0;
     }
-    .flow-as-flip .features-grid::-webkit-scrollbar-track{ background: transparent; }
 
-    @media (min-width: 900px){
-      .flow-as-flip .features-grid{
-        overflow: visible;
-        grid-auto-flow: unset;
-        grid-auto-columns: unset;
-        grid-template-columns: repeat(4, 260px);
-        justify-content: center;
-        gap: 22px;
-        padding: 12px 0 0;
+    @media (max-width: 820px){
+      .feature-card{ width: 250px; height: 170px; }
+    }
+    @media (max-width: 760px){
+      /* Mobile: horizontal scroll (clean + centered not needed) */
+      .capabilities-grid{
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        justify-content:flex-start;
+        padding: 6px 6px 12px;
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
       }
-      .flow-as-flip .feature-card{ width: 260px; height: 172px; }
-    }
-
-    /* ---- NEW: Capabilities flip cards - centered last row ---- */
-    .cap-flip{
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-      border-bottom: 1px solid rgba(15,23,42,0.06);
-    }
-    @media (min-width: 900px){
-      /* Center the last card by spanning 2 columns */
-      .cap-last{
-        grid-column: 2 / span 2;
+      .capabilities-grid .feature-card{
+        flex:0 0 auto;
+        scroll-snap-align:start;
       }
+      .capabilities-grid::-webkit-scrollbar{ height: 10px; }
+      .capabilities-grid::-webkit-scrollbar-thumb{
+        background: rgba(100,116,139,0.25);
+        border-radius: 999px;
+      }
+      .capabilities-grid::-webkit-scrollbar-track{ background: transparent; }
     }
 
     /* ---------- VIDEO PLACEHOLDER ---------- */
     .video-placeholder{
       padding: var(--section-y) 0;
-      background: #ffffff;
+      background:
+        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.08), transparent 62%),
+        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.08), transparent 62%),
+        #ffffff;
       border-bottom: 1px solid rgba(15,23,42,0.06);
     }
     .video-wrap{
@@ -951,7 +993,10 @@
       padding: 0 var(--pad-x) 8px;
     }
     .request-demo-card{
-      background: #fff;
+      background:
+        radial-gradient(900px 220px at 12% 0%, rgba(37,99,235,0.08), transparent 62%),
+        radial-gradient(900px 220px at 88% 0%, rgba(229,57,53,0.08), transparent 62%),
+        #fff;
       border: 1px solid rgba(15,23,42,0.10);
       border-radius: 26px;
       box-shadow: 0 14px 44px rgba(15,23,42,0.08);
@@ -998,7 +1043,10 @@
     /* ---------- FAQ SECTION ---------- */
     .faq-section{
       padding:var(--section-y) 0;
-      background:#f8fafc;
+      background:
+        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.08), transparent 62%),
+        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.08), transparent 62%),
+        #f8fafc;
       text-align:center;
       border-top:1px solid rgba(15,23,42,0.06);
     }
@@ -1279,54 +1327,52 @@
   </div>
 </section>
 
-<!-- WHAT'S NEW (Crucial capabilities) -->
-<section class="flow-as-flip cap-flip" id="capabilities">
+<!-- WHAT'S NEW (fixed alignment: 4 top + 3 centered below) -->
+<section class="flow-as-flip" id="capabilities">
   <div class="features-container">
     <div class="features-intro">
       <h2>What’s new in VMP?</h2>
       <p>
-        New depth for vulnerability operations: risk-led prioritization, richer compliance control, deeper scan visibility, and
-        better reporting—so teams can focus on what truly reduces exposure.
+        New depth for vulnerability operations: risk-led prioritization, richer compliance control, deeper scan visibility,
+        and better reporting—so teams can focus on what truly reduces exposure.
       </p>
     </div>
 
-    <div class="flow-wrap">
-      <div class="features-grid" aria-label="What's new in VMP flip cards">
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Risk source and prioritization">
-          <div class="feature-front"><h3>Risk source &amp; prioritization</h3></div>
-          <div class="feature-back"><p>Prioritize issues using risk sources, severity, and exploit signals—so the most dangerous gaps get fixed first.</p></div>
-        </a>
+    <div class="capabilities-grid" aria-label="What's new in VMP flip cards">
+      <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Risk source and prioritization">
+        <div class="feature-front"><h3>Risk source &amp; prioritization</h3></div>
+        <div class="feature-back"><p>Prioritize issues using risk sources, severity, and exploit signals—so the most dangerous gaps get fixed first.</p></div>
+      </a>
 
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Custom compliance">
-          <div class="feature-front"><h3>Custom compliance</h3></div>
-          <div class="feature-back"><p>Tailor benchmarks to your internal policies—adjust controls where “one-size-fits-all” doesn’t work.</p></div>
-        </a>
+      <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Custom compliance">
+        <div class="feature-front"><h3>Custom compliance</h3></div>
+        <div class="feature-back"><p>Tailor benchmarks to your internal policies—adjust controls where “one-size-fits-all” doesn’t work.</p></div>
+      </a>
 
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Compliance remediation deployment">
-          <div class="feature-front"><h3>Compliance remediation deployment</h3></div>
-          <div class="feature-back"><p>Move from findings to action by deploying remediation for compliance gaps through controlled workflows.</p></div>
-        </a>
+      <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Compliance remediation deployment">
+        <div class="feature-front"><h3>Compliance remediation deployment</h3></div>
+        <div class="feature-back"><p>Move from findings to action by deploying remediation for compliance gaps through controlled workflows.</p></div>
+      </a>
 
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Component vulnerability scanning">
-          <div class="feature-front"><h3>Component vulnerability scanning</h3></div>
-          <div class="feature-back"><p>Detect vulnerable components behind apps and services, not just “top-level” software—reduce hidden exposure.</p></div>
-        </a>
+      <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Component vulnerability scanning">
+        <div class="feature-front"><h3>Component vulnerability scanning</h3></div>
+        <div class="feature-back"><p>Detect vulnerable components behind apps and services, not just “top-level” software—reduce hidden exposure.</p></div>
+      </a>
 
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="NCM integration">
-          <div class="feature-front"><h3>NCM integration</h3></div>
-          <div class="feature-back"><p>Connect network configuration context to vulnerability operations—align device configs with remediation priorities.</p></div>
-        </a>
+      <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="NCM integration">
+        <div class="feature-front"><h3>NCM integration</h3></div>
+        <div class="feature-back"><p>Connect network configuration context to vulnerability operations—align device configs with remediation priorities.</p></div>
+      </a>
 
-        <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Dashboard customization">
-          <div class="feature-front"><h3>Dashboard customization</h3></div>
-          <div class="feature-back"><p>Create dashboards that match your stakeholders—security, IT, and audit views in one place.</p></div>
-        </a>
+      <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Dashboard customization">
+        <div class="feature-front"><h3>Dashboard customization</h3></div>
+        <div class="feature-back"><p>Create dashboards that match your stakeholders—security, IT, and audit views in one place.</p></div>
+      </a>
 
-        <a class="feature-card cap-last" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Historical vulnerability analysis">
-          <div class="feature-front"><h3>Historical vulnerability analysis</h3></div>
-          <div class="feature-back"><p>Track past vulnerabilities over time to prove remediation progress and spot repeat patterns quickly.</p></div>
-        </a>
-      </div>
+      <a class="feature-card" href="https://www.manageengine.com/vulnerability-management/features.html" aria-label="Historical vulnerability analysis">
+        <div class="feature-front"><h3>Historical vulnerability analysis</h3></div>
+        <div class="feature-back"><p>Track past vulnerabilities over time to prove remediation progress and spot repeat patterns quickly.</p></div>
+      </a>
     </div>
   </div>
 </section>
