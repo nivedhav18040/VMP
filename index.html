@@ -381,18 +381,31 @@
       flex-wrap:wrap;
     }
     .os-logo{
-      width:64px;
-      height:64px;
-      border-radius:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(15,23,42,0.10);
-      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
-      color:#0b1220; /* ensures SVG visible */
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
+  width:64px;
+  height:64px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(15,23,42,0.10);
+  box-shadow: 0 14px 34px rgba(15,23,42,0.06);
+
+  color: #0b1220 !important;   /* ✅ force icon color */
+}
+
+.os-logo svg{
+  display:block;
+  width:30px;
+  height:30px;
+  fill: currentColor;          /* ✅ force fill to use color */
+}
+
+.os-logo svg *{
+  fill: currentColor;          /* ✅ force all parts visible */
+  stroke: currentColor;        /* ✅ if any stroke paths exist */
+}
+
     .os-logo:hover{
       transform: translateY(-2px);
       border-color: rgba(229,57,53,0.25);
