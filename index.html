@@ -1078,15 +1078,32 @@
     </div>
   </div>
 
-  <div class="os-strip" aria-label="Supported operating systems">
-    <div class="os-logo" title="Windows" aria-label="Windows">
-      <svg width="30" height="30" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <rect x="1" y="2" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.95"></rect>
-        <rect x="11" y="2" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.75"></rect>
-        <rect x="1" y="11" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.75"></rect>
-        <rect x="11" y="11" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.95"></rect>
-      </svg>
-    </div>
+<div class="os-strip" aria-label="Supported operating systems">
+  <div class="os-logo" title="Windows" aria-label="Windows">
+    <img src="./windows.webp" alt="Windows logo" class="os-img">
+  </div>
+
+  <div class="os-logo" title="macOS" aria-label="macOS">
+    <img src="./apple.png" alt="Apple logo" class="os-img">
+  </div>
+
+  <div class="os-logo" title="Linux" aria-label="Linux">
+    <img src="./linux.png" alt="Linux logo" class="os-img">
+  </div>
+</div>
+.os-img{
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
+/* optional: if your windows.webp looks too wide */
+.os-logo img[alt*="Windows"]{
+  width: 36px;
+  height: 36px;
+}
+
 
     <div class="os-logo" title="macOS" aria-label="macOS">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
