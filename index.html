@@ -342,7 +342,12 @@
     }
     .brand-card img.nhs{ max-height: 38px; }
 
-    /* ---------- PLATFORM COVERAGE (separate section) ---------- */
+    @media (max-width: 640px){
+      .logo-marquee::before, .logo-marquee::after{ width:64px; }
+      .brand-card{ width: 180px; }
+    }
+
+    /* ---------- PLATFORM COVERAGE (logos only) ---------- */
     .coverage{
       padding: 54px 0 62px;
       background:
@@ -354,7 +359,7 @@
     .coverage-head{
       text-align:center;
       max-width: 980px;
-      margin: 0 auto 22px;
+      margin: 0 auto 18px;
       padding: 0 var(--pad-x);
     }
     .coverage-head h2{
@@ -363,85 +368,35 @@
       letter-spacing: -0.02em;
       color:#0b1220;
     }
-    .coverage-head p{
-      margin-top: 8px;
-      color: var(--muted-2);
-      font-size: 15px;
-      line-height: 1.7;
-    }
 
-    .coverage-grid{
+    /* OS logos strip */
+    .os-strip{
       max-width: var(--container);
-      margin: 0 auto;
+      margin: 10px auto 0;
       padding: 0 var(--pad-x);
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .os-card{
-      background:#fff;
-      border:1px solid rgba(15,23,42,0.08);
-      border-radius:20px;
-      padding:18px 18px;
-      box-shadow:0 18px 44px rgba(15,23,42,0.06);
-      position:relative;
-      overflow:hidden;
-      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-      min-height: 132px;
-    }
-    .os-card::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(900px 240px at 20% 0%, rgba(37,99,235,0.07), transparent 62%),
-        radial-gradient(900px 240px at 80% 0%, rgba(229,57,53,0.07), transparent 62%);
-      opacity:0;
-      transition:opacity .22s ease;
-      pointer-events:none;
-    }
-    .os-card:hover{
-      transform:translateY(-3px);
-      box-shadow:0 26px 64px rgba(15,23,42,0.12);
-      border-color:rgba(229,57,53,0.35);
-    }
-    .os-card:hover::before{ opacity:1; }
-
-    .os-top{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      position:relative;
-      z-index:1;
-    }
-    .os-icon{
-      width:44px;
-      height:44px;
-      border-radius:14px;
       display:flex;
       align-items:center;
       justify-content:center;
-      border:1px solid rgba(15,23,42,0.08);
-      background:
-        radial-gradient(900px 160px at 20% 0%, rgba(37,99,235,0.10), transparent 62%),
-        radial-gradient(900px 160px at 80% 0%, rgba(229,57,53,0.10), transparent 62%),
-        #fff;
-      color:#0b1220; /* ensure svg shows */
-      box-shadow:0 10px 22px rgba(15,23,42,0.06);
+      gap:18px;
+      flex-wrap:wrap;
     }
-    .os-top h3{
-      font-size:18px;
-      font-weight:1000;
-      letter-spacing:-0.01em;
-      color:#0b1220;
+    .os-logo{
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(15,23,42,0.10);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
+      color:#0b1220; /* ensures SVG visible */
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    .os-sub{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:14px;
-      position:relative;
-      z-index:1;
-      max-width: 52ch;
+    .os-logo:hover{
+      transform: translateY(-2px);
+      border-color: rgba(229,57,53,0.25);
+      box-shadow: 0 18px 38px rgba(15,23,42,0.10);
     }
 
     .coverage-metrics{
@@ -479,12 +434,7 @@
     .coverage-metric a:hover{ text-decoration:underline; color:var(--blue-2); }
 
     @media (max-width: 980px){
-      .coverage-grid{ grid-template-columns:1fr; }
       .coverage-metrics{ grid-template-columns:1fr; }
-    }
-    @media (max-width: 640px){
-      .logo-marquee::before, .logo-marquee::after{ width:64px; }
-      .brand-card{ width: 180px; }
     }
 
     /* ---------- FEATURES (3 verticals with hover descriptions) ---------- */
@@ -742,7 +692,7 @@
     }
 
     .plan-col.free{
-      background: rgba(22,163,74,0.03);
+      background: rgba(255,255,255,0.70);
     }
     .plan-col.enterprise{
       background: rgba(229,57,53,0.028);
@@ -788,7 +738,7 @@
       background: rgba(15,23,42,0.10);
       margin: 14px 0 18px;
     }
-    .plan-col.free .plan-divider{ background: rgba(22,163,74,0.18); }
+    .plan-col.free .plan-divider{ background: rgba(15,23,42,0.10); }
 
     .plan-list{
       list-style: none;
@@ -817,49 +767,53 @@
     .plan-list li.tick-green::before{ color: var(--green); }
 
     .plan-cta-row{
-      margin-top:auto;            /* key: keeps all CTAs aligned */
+      margin-top:auto;            /* keeps all CTAs aligned */
       padding-top: 18px;
       display:flex;
       justify-content:center;
     }
 
+    /* Pricing CTA pills (per your request) */
     .plan-btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       padding: 12px 18px;
-      border-radius: 12px;
+      border-radius: 999px; /* pill */
       font-weight: 1000;
-      text-decoration: none;
+      text-decoration:none;
       min-width: 200px;
-      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, background .18s ease, border-color .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
     }
 
-    .plan-btn.outline{
-      background: #ffffff;
-      color: var(--blue-2);
-      border: 1.5px solid rgba(37,99,235,0.55);
+    /* Free = white */
+    .plan-btn.free{
+      background:#ffffff;
+      color:#0b1220;
+      border:1.5px solid rgba(15,23,42,0.14);
       box-shadow: 0 10px 26px rgba(15,23,42,0.08);
     }
 
-    .plan-btn.solid{
-      color: #0b1220;
-      border: 1px solid transparent;
-      background: linear-gradient(135deg, var(--red), var(--red-2));
-      box-shadow: 0 18px 44px rgba(229,57,53,0.22);
+    /* Professional = light red */
+    .plan-btn.pro{
+      background: rgba(229,57,53,0.14);
+      color:#0b1220;
+      border:1.5px solid rgba(229,57,53,0.22);
+      box-shadow: 0 16px 42px rgba(229,57,53,0.12);
     }
 
-    .plan-btn.green{
+    /* Enterprise = proper red */
+    .plan-btn.ent{
+      background: linear-gradient(135deg, var(--red), var(--red-2));
       color:#0b1220;
-      border: 1px solid rgba(22,163,74,0.35);
-      background: linear-gradient(135deg, rgba(22,163,74,0.26), rgba(22,163,74,0.10));
-      box-shadow: 0 18px 44px rgba(22,163,74,0.14);
+      border:1px solid transparent;
+      box-shadow: 0 18px 44px rgba(229,57,53,0.22);
     }
 
     .plan-btn:hover{
       transform: translateY(-2px);
-      box-shadow: 0 22px 56px rgba(15,23,42,0.16);
       filter: brightness(1.02);
+      box-shadow: 0 22px 56px rgba(15,23,42,0.16);
     }
 
     .pricing-footnote{
@@ -1043,9 +997,8 @@
 
 <section class="hero" id="overview">
   <div class="container">
-    <!-- UPDATED: catchier hero heading -->
     <h1>
-      <span class="hero-title-main">Stop vulnerabilities before they turn into breaches.</span>
+      <span class="hero-title-main">Your shortest path from exposure to secure.</span>
     </h1>
 
     <div class="hero-buttons" aria-label="Primary actions">
@@ -1104,59 +1057,37 @@
   </div>
 </section>
 
-<!-- NEW: Multi-OS / Platform coverage as its own section (always visible logos) -->
+<!-- Multi-OS logos only + CIS + Apps -->
 <section class="coverage" aria-label="Platform coverage">
   <div class="container">
     <div class="coverage-head">
-      <h2>Multi-OS coverage that just works</h2>
-      <p>Scan, assess, and remediate across mixed endpoint fleets—without splitting workflows.</p>
+      <h2>Multi-OS coverage</h2>
     </div>
   </div>
 
-  <div class="coverage-grid" aria-label="Supported operating systems">
-    <div class="os-card">
-      <div class="os-top">
-        <div class="os-icon" aria-hidden="true">
-          <!-- Windows icon -->
-          <svg width="24" height="24" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <rect x="1" y="2" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.95"></rect>
-            <rect x="11" y="2" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.75"></rect>
-            <rect x="1" y="11" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.75"></rect>
-            <rect x="11" y="11" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.95"></rect>
-          </svg>
-        </div>
-        <h3>Windows</h3>
-      </div>
-      <div class="os-sub">Detect vulnerabilities, misconfigurations, and patchable third-party apps on Windows endpoints.</div>
+  <div class="os-strip" aria-label="Supported operating systems">
+    <div class="os-logo" title="Windows" aria-label="Windows">
+      <svg width="30" height="30" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="1" y="2" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.95"></rect>
+        <rect x="11" y="2" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.75"></rect>
+        <rect x="1" y="11" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.75"></rect>
+        <rect x="11" y="11" width="8" height="7" rx="1.5" fill="currentColor" opacity="0.95"></rect>
+      </svg>
     </div>
 
-    <div class="os-card">
-      <div class="os-top">
-        <div class="os-icon" aria-hidden="true">
-          <!-- Apple-ish icon (minimal) -->
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M16.2 12.1c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-2-1.5-.2-2.9.9-3.7.9-.7 0-1.9-.9-3.2-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.5 3.3 2.4 1.3-.1 1.8-.8 3.4-.8 1.6 0 2.1.8 3.4.8 1.4 0 2.3-1.2 3.2-2.4.9-1.3 1.3-2.6 1.3-2.6-.1 0-3.4-1.3-3.4-5.3Z" fill="currentColor" opacity="0.9"/>
-            <path d="M14.9 3.2c.6-.8 1-1.8.9-2.8-1 .1-2.1.7-2.8 1.5-.6.7-1.1 1.8-.9 2.8 1 .1 2-.5 2.8-1.5Z" fill="currentColor" opacity="0.75"/>
-          </svg>
-        </div>
-        <h3>macOS</h3>
-      </div>
-      <div class="os-sub">Keep Macs secure with risk visibility, prioritized remediation, and posture hardening controls.</div>
+    <div class="os-logo" title="macOS" aria-label="macOS">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M16.2 12.1c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-2-1.5-.2-2.9.9-3.7.9-.7 0-1.9-.9-3.2-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.5 3.3 2.4 1.3-.1 1.8-.8 3.4-.8 1.6 0 2.1.8 3.4.8 1.4 0 2.3-1.2 3.2-2.4.9-1.3 1.3-2.6 1.3-2.6-.1 0-3.4-1.3-3.4-5.3Z" fill="currentColor" opacity="0.9"/>
+        <path d="M14.9 3.2c.6-.8 1-1.8.9-2.8-1 .1-2.1.7-2.8 1.5-.6.7-1.1 1.8-.9 2.8 1 .1 2-.5 2.8-1.5Z" fill="currentColor" opacity="0.75"/>
+      </svg>
     </div>
 
-    <div class="os-card">
-      <div class="os-top">
-        <div class="os-icon" aria-hidden="true">
-          <!-- Linux (minimal penguin + terminal hint) -->
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 4.2c2.5 0 4.1 2 4.1 4.6 0 1.5-.5 2.7-1.2 3.6.9.9 1.5 2.1 1.5 3.7 0 2.7-1.9 4.7-4.4 4.7s-4.4-2-4.4-4.7c0-1.6.6-2.8 1.5-3.7-.7-.9-1.2-2.1-1.2-3.6C7.9 6.2 9.5 4.2 12 4.2Z" fill="currentColor" opacity="0.9"/>
-            <path d="M10.1 10.3c.3 0 .6-.3.6-.6s-.3-.6-.6-.6-.6.3-.6.6.3.6.6.6Zm3.8 0c.3 0 .6-.3.6-.6s-.3-.6-.6-.6-.6.3-.6.6.3.6.6.6Z" fill="#fff" opacity="0.95"/>
-            <path d="M9.6 13.4h4.8" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity="0.9"/>
-          </svg>
-        </div>
-        <h3>Linux</h3>
-      </div>
-      <div class="os-sub">Improve Linux exposure management with continuous monitoring and remediation-driven workflows.</div>
+    <div class="os-logo" title="Linux" aria-label="Linux">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 4.2c2.5 0 4.1 2 4.1 4.6 0 1.5-.5 2.7-1.2 3.6.9.9 1.5 2.1 1.5 3.7 0 2.7-1.9 4.7-4.4 4.7s-4.4-2-4.4-4.7c0-1.6.6-2.8 1.5-3.7-.7-.9-1.2-2.1-1.2-3.6C7.9 6.2 9.5 4.2 12 4.2Z" fill="currentColor" opacity="0.9"/>
+        <path d="M10.1 10.3c.3 0 .6-.3.6-.6s-.3-.6-.6-.6-.6.3-.6.6.3.6.6.6Zm3.8 0c.3 0 .6-.3.6-.6s-.3-.6-.6-.6-.6.3-.6.6.3.6.6.6Z" fill="#fff" opacity="0.95"/>
+        <path d="M9.6 13.4h4.8" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity="0.9"/>
+      </svg>
     </div>
   </div>
 
@@ -1173,13 +1104,11 @@
 </section>
 
 <section class="features" id="features">
-  <!-- UPDATED: catchier section headline + subline -->
   <h2 class="feature-heading">Know risk. Lock down endpoints. Move fast.</h2>
   <p class="feature-umbrella">
     Three pillars built for real-world vulnerability operations—visibility, hardening, and rapid mitigation.
   </p>
 
-  <!-- UPDATED: 3 verticals, 3 features each, hover reveals second line -->
   <div class="feature-grid">
     <div class="card">
       <h3>Risk Visibility &amp; Intelligence</h3>
@@ -1255,8 +1184,9 @@
 <section class="pricing-compare" id="pricing">
   <div class="pricing-wrap">
     <h2 class="pricing-title">Pick the right path to control</h2>
+    <!-- removed the “core/advanced” pill wording; kept it neutral -->
     <p class="pricing-sub">
-      Start with Free for a quick rollout, choose Professional for core vulnerability operations, or go Enterprise for deeper mitigation and control.
+      Choose Free to start quickly, Professional for structured vulnerability operations, or Enterprise to scale remediation and compliance.
     </p>
 
     <div class="compare-card" aria-label="Plans comparison">
@@ -1267,9 +1197,9 @@
           <h3>Free Edition</h3>
 
           <div class="plan-price">
-            <span class="plan-kicker">INCLUDES</span>
+            <span class="plan-kicker">FREE</span>
             <div class="plan-amount-row">
-              <span class="amt">Free</span>
+              <span class="amt">$0.00</span>
               <span class="unit">up to 25 devices</span>
             </div>
           </div>
@@ -1281,7 +1211,7 @@
           </ul>
 
           <div class="plan-cta-row">
-            <a href="https://www.manageengine.com/vulnerability-management/free-trial.html?vmp-home-signup" class="plan-btn green" target="_blank" rel="noopener">Get started</a>
+            <a href="https://www.manageengine.com/vulnerability-management/free-trial.html?vmp-home-signup" class="plan-btn free" target="_blank" rel="noopener">Get started</a>
           </div>
         </div>
 
@@ -1290,10 +1220,10 @@
           <h3>Professional Edition</h3>
 
           <div class="plan-price">
-            <span class="plan-kicker">BEST FOR</span>
+            <span class="plan-kicker">STARTS AT</span>
             <div class="plan-amount-row">
-              <span class="amt">Security teams</span>
-              <span class="unit">starting strong</span>
+              <span class="amt">$0.9</span>
+              <span class="unit">/ device / month</span>
             </div>
           </div>
 
@@ -1306,7 +1236,7 @@
           </ul>
 
           <div class="plan-cta-row">
-            <a href="https://www.manageengine.com/vulnerability-management/get-quote.html" class="plan-btn outline" target="_blank" rel="noopener">Get quote</a>
+            <a href="https://www.manageengine.com/vulnerability-management/get-quote.html" class="plan-btn pro" target="_blank" rel="noopener">Get quote</a>
           </div>
         </div>
 
@@ -1315,10 +1245,10 @@
           <h3>Enterprise Edition</h3>
 
           <div class="plan-price">
-            <span class="plan-kicker">BEST FOR</span>
+            <span class="plan-kicker">STARTS AT</span>
             <div class="plan-amount-row">
-              <span class="amt">Advanced ops</span>
-              <span class="unit">at scale</span>
+              <span class="amt">$1.55</span>
+              <span class="unit">/ device / month</span>
             </div>
           </div>
 
@@ -1332,7 +1262,7 @@
           </ul>
 
           <div class="plan-cta-row">
-            <a href="https://www.manageengine.com/vulnerability-management/get-quote.html" class="plan-btn solid" target="_blank" rel="noopener">Get quote</a>
+            <a href="https://www.manageengine.com/vulnerability-management/get-quote.html" class="plan-btn ent" target="_blank" rel="noopener">Get quote</a>
           </div>
         </div>
 
