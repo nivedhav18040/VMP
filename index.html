@@ -378,38 +378,33 @@
       align-items:center;
       justify-content:center;
       gap:18px;
-      flex-wrap:wrap;
+      flex-wrap:nowrap;
     }
     .os-logo{
-  width:64px;
-  height:64px;
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(15,23,42,0.10);
-  box-shadow: 0 14px 34px rgba(15,23,42,0.06);
-
-  color: #0b1220 !important;   /* ✅ force icon color */
-}
-
-.os-logo svg{
-  display:block;
-  width:30px;
-  height:30px;
-  fill: currentColor;          /* ✅ force fill to use color */
-}
-
-.os-logo svg *{
-  fill: currentColor;          /* ✅ force all parts visible */
-  stroke: currentColor;        /* ✅ if any stroke paths exist */
-}
-
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(15,23,42,0.10);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .os-logo img{
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      display:block;
+    }
     .os-logo:hover{
       transform: translateY(-2px);
       border-color: rgba(229,57,53,0.25);
       box-shadow: 0 18px 38px rgba(15,23,42,0.10);
+    }
+    @media (max-width: 520px){
+      .os-strip{ flex-wrap:wrap; }
     }
 
     .coverage-metrics{
@@ -496,7 +491,6 @@
       border:2px solid transparent;
       position:relative;
       overflow:hidden;
-      min-height: 300px;
     }
     .card::before{
       content:"";
@@ -516,7 +510,6 @@
       box-shadow:0 28px 60px rgba(37,99,235,0.12);
       transform:translateY(-2px);
     }
-
     .card h3{
       margin-bottom:10px;
       font-size:22px;
@@ -528,17 +521,18 @@
     }
     .card .tagline{
       margin-bottom:18px;
-      color:var(--muted);
-      font-size:16px;
+      color:var(--muted-2);
+      font-size:15px;
+      font-weight:800;
       position:relative;
       z-index:1;
     }
 
-    .feature-list{ list-style:none; position:relative; z-index:1; margin-top:14px; }
+    .feature-list{ list-style:none; position:relative; z-index:1; }
     .feature-list li{
-      margin-bottom:16px;
+      margin-bottom:14px;
       position:relative;
-      padding-left:26px;
+      padding-left:24px;
     }
     .feature-list li::before{
       content:"✓";
@@ -551,8 +545,7 @@
     .feature-list strong{
       display:block;
       font-weight:1000;
-      color:#0f172a;
-      letter-spacing:-0.01em;
+      color:var(--dark);
     }
     .feature-list span{
       display:block;
@@ -564,7 +557,7 @@
       color:var(--muted);
       transition:max-height .35s ease, opacity .25s ease;
     }
-    .card:hover .feature-list span{ max-height:160px; opacity:1; }
+    .card:hover .feature-list span{ max-height:120px; opacity:1; }
 
     /* ---------- VIDEO PLACEHOLDER ---------- */
     .video-placeholder{
@@ -633,7 +626,7 @@
       max-width: 640px;
     }
 
-    /* ---------- PRICING (3 editions + aligned CTAs) ---------- */
+    /* ---------- PRICING ---------- */
     .pricing-compare{
       padding: calc(var(--section-y) - 12px) 0;
       background:
@@ -672,7 +665,7 @@
       box-shadow: 0 18px 48px rgba(15,23,42,0.10);
       overflow: hidden;
       position: relative;
-      max-width: 1140px;
+      max-width: 1100px;
       margin: 0 auto;
     }
     .compare-card::before{
@@ -688,38 +681,33 @@
     .compare-cols{
       position: relative;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .plan-col{
       position: relative;
       padding: 26px 22px 22px;
       text-align: left;
-      display:flex;
-      flex-direction:column;
-      min-height: 360px; /* ensures CTA alignment */
     }
 
     .plan-col + .plan-col{
       border-left: 1px solid rgba(15,23,42,0.08);
     }
 
-    .plan-col.free{
-      background: rgba(255,255,255,0.70);
-    }
-    .plan-col.enterprise{
-      background: rgba(229,57,53,0.028);
-    }
+    .plan-col.free{ background: rgba(22,163,74,0.03); }
+    .plan-col.pro{ background: rgba(229,57,53,0.04); }
+    .plan-col.ent{ background: rgba(229,57,53,0.07); }
 
     .plan-col h3{
       font-size: 22px;
       font-weight: 1000;
       letter-spacing: -0.01em;
-      margin: 6px 0 14px;
+      margin: 8px 0 14px;
       color: #0b1220;
     }
 
-    .plan-price{ margin-bottom: 10px; }
+    .plan-price{ margin-bottom: 12px; }
+
     .plan-kicker{
       display: inline-block;
       font-size: 13px;
@@ -728,30 +716,32 @@
       color: rgba(100,116,139,0.95);
       margin-bottom: 6px;
     }
+
     .plan-amount-row{
-      display:flex;
+      display: flex;
       align-items: baseline;
-      gap:10px;
-      flex-wrap:wrap;
+      gap: 10px;
+      flex-wrap: wrap;
     }
+
     .plan-amount-row .amt{
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 1000;
       letter-spacing: -0.03em;
       color: #0b1220;
     }
+
     .plan-amount-row .unit{
-      font-size: 14px;
+      font-size: 15px;
       color: var(--muted-2);
-      font-weight: 900;
+      font-weight: 800;
     }
 
     .plan-divider{
       height: 1px;
-      background: rgba(15,23,42,0.10);
+      background: rgba(229,57,53,0.28);
       margin: 14px 0 18px;
     }
-    .plan-col.free .plan-divider{ background: rgba(15,23,42,0.10); }
 
     .plan-list{
       list-style: none;
@@ -780,61 +770,57 @@
     .plan-list li.tick-green::before{ color: var(--green); }
 
     .plan-cta-row{
-      margin-top:auto;            /* keeps all CTAs aligned */
-      padding-top: 18px;
-      display:flex;
-      justify-content:center;
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
     }
 
-    /* Pricing CTA pills (per your request) */
+    /* Align pill buttons in same line across cards */
+    .plan-cta-row{ min-height: 54px; }
+
     .plan-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 18px;
-      border-radius: 999px; /* pill */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
       font-weight: 1000;
-      text-decoration:none;
-      min-width: 200px;
-      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      text-decoration: none;
+      min-width: 220px;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, background .18s ease, border-color .18s ease;
+      border: 1.5px solid rgba(15,23,42,0.14);
     }
 
-    /* Free = white */
     .plan-btn.free{
       background:#ffffff;
       color:#0b1220;
-      border:1.5px solid rgba(15,23,42,0.14);
       box-shadow: 0 10px 26px rgba(15,23,42,0.08);
     }
-
-    /* Professional = light red */
     .plan-btn.pro{
-      background: rgba(229,57,53,0.14);
+      background: rgba(255,90,95,0.18); /* light red */
       color:#0b1220;
-      border:1.5px solid rgba(229,57,53,0.22);
-      box-shadow: 0 16px 42px rgba(229,57,53,0.12);
+      box-shadow: 0 10px 26px rgba(15,23,42,0.08);
+      border-color: rgba(229,57,53,0.28);
     }
-
-    /* Enterprise = proper red */
     .plan-btn.ent{
-      background: linear-gradient(135deg, var(--red), var(--red-2));
+      background: linear-gradient(135deg, var(--red), var(--red-2)); /* proper red */
       color:#0b1220;
-      border:1px solid transparent;
+      border-color: transparent;
       box-shadow: 0 18px 44px rgba(229,57,53,0.22);
     }
 
     .plan-btn:hover{
       transform: translateY(-2px);
-      filter: brightness(1.02);
       box-shadow: 0 22px 56px rgba(15,23,42,0.16);
+      filter: brightness(1.02);
     }
 
     .pricing-footnote{
       margin-top: 18px;
       font-size: 13px;
       color: var(--muted-2);
+      line-height: 1.6;
     }
-    .pricing-footnote a{ color: var(--blue-2); text-decoration: underline; }
 
     @media (max-width: 980px){
       .compare-cols{ grid-template-columns: 1fr; }
@@ -842,11 +828,13 @@
         border-left: none;
         border-top: 1px solid rgba(15,23,42,0.08);
       }
-      .plan-col{ min-height: unset; }
     }
 
     /* ---------- REQUEST DEMO BANNER (below pricing) ---------- */
-    .request-demo-band{ padding: 22px 0 0; background: transparent; }
+    .request-demo-band{
+      padding: 22px 0 0;
+      background: transparent;
+    }
     .request-demo-inner{
       max-width: 1180px;
       margin: 0 auto;
@@ -893,7 +881,10 @@
       border-color: rgba(229,57,53,0.35);
     }
     @media (max-width: 760px){
-      .request-demo-card{ flex-direction:column; align-items:flex-start; }
+      .request-demo-card{
+        flex-direction:column;
+        align-items:flex-start;
+      }
       .request-demo-btn{ width:100%; justify-content:center; }
     }
 
@@ -1076,38 +1067,28 @@
     <div class="coverage-head">
       <h2>Multi-OS coverage</h2>
     </div>
-  </div>
 
-<div class="os-strip" aria-label="Supported operating systems">
-  <div class="os-logo"><img src="./windows.webp" ...></div>
-  <div class="os-logo"><img src="./apple.png" ...></div>
-  <div class="os-logo"><img src="./linux.png" ...></div>
-</div>
-
-    <div class="os-logo" title="macOS" aria-label="macOS">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M16.2 12.1c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-2-1.5-.2-2.9.9-3.7.9-.7 0-1.9-.9-3.2-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.5 3.3 2.4 1.3-.1 1.8-.8 3.4-.8 1.6 0 2.1.8 3.4.8 1.4 0 2.3-1.2 3.2-2.4.9-1.3 1.3-2.6 1.3-2.6-.1 0-3.4-1.3-3.4-5.3Z" fill="currentColor" opacity="0.9"/>
-        <path d="M14.9 3.2c.6-.8 1-1.8.9-2.8-1 .1-2.1.7-2.8 1.5-.6.7-1.1 1.8-.9 2.8 1 .1 2-.5 2.8-1.5Z" fill="currentColor" opacity="0.75"/>
-      </svg>
+    <div class="os-strip" aria-label="Supported operating systems">
+      <div class="os-logo" title="Windows" aria-label="Windows">
+        <img src="./windows.webp" alt="Windows logo" loading="lazy">
+      </div>
+      <div class="os-logo" title="macOS" aria-label="macOS">
+        <img src="./apple.png" alt="Apple logo" loading="lazy">
+      </div>
+      <div class="os-logo" title="Linux" aria-label="Linux">
+        <img src="./linux.png" alt="Linux logo" loading="lazy">
+      </div>
     </div>
 
-    <div class="os-logo" title="Linux" aria-label="Linux">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 4.2c2.5 0 4.1 2 4.1 4.6 0 1.5-.5 2.7-1.2 3.6.9.9 1.5 2.1 1.5 3.7 0 2.7-1.9 4.7-4.4 4.7s-4.4-2-4.4-4.7c0-1.6.6-2.8 1.5-3.7-.7-.9-1.2-2.1-1.2-3.6C7.9 6.2 9.5 4.2 12 4.2Z" fill="currentColor" opacity="0.9"/>
-        <path d="M10.1 10.3c.3 0 .6-.3.6-.6s-.3-.6-.6-.6-.6.3-.6.6.3.6.6.6Zm3.8 0c.3 0 .6-.3.6-.6s-.3-.6-.6-.6-.6.3-.6.6.3.6.6.6Z" fill="#fff" opacity="0.95"/>
-        <path d="M9.6 13.4h4.8" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity="0.9"/>
-      </svg>
-    </div>
-  </div>
-
-  <div class="coverage-metrics" aria-label="Coverage metrics">
-    <div class="coverage-metric">
-      <strong><a href="https://www.manageengine.com/vulnerability-management/supported-compliance-policies.html" target="_blank" rel="noopener">75+</a></strong>
-      <span><a href="https://www.manageengine.com/vulnerability-management/supported-compliance-policies.html" target="_blank" rel="noopener">CIS benchmarks supported</a></span>
-    </div>
-    <div class="coverage-metric">
-      <strong><a href="https://www.manageengine.com/vulnerability-management/supported-applications.html" target="_blank" rel="noopener">1100+</a></strong>
-      <span><a href="https://www.manageengine.com/vulnerability-management/supported-applications.html" target="_blank" rel="noopener">third-party apps patchable</a></span>
+    <div class="coverage-metrics" aria-label="Coverage metrics">
+      <div class="coverage-metric">
+        <strong><a href="https://www.manageengine.com/vulnerability-management/supported-compliance-policies.html" target="_blank" rel="noopener">75+</a></strong>
+        <span><a href="https://www.manageengine.com/vulnerability-management/supported-compliance-policies.html" target="_blank" rel="noopener">CIS benchmarks supported</a></span>
+      </div>
+      <div class="coverage-metric">
+        <strong><a href="https://www.manageengine.com/vulnerability-management/supported-applications.html" target="_blank" rel="noopener">1100+</a></strong>
+        <span><a href="https://www.manageengine.com/vulnerability-management/supported-applications.html" target="_blank" rel="noopener">third-party apps patchable</a></span>
+      </div>
     </div>
   </div>
 </section>
@@ -1193,7 +1174,6 @@
 <section class="pricing-compare" id="pricing">
   <div class="pricing-wrap">
     <h2 class="pricing-title">Pick the right path to control</h2>
-    <!-- removed the “core/advanced” pill wording; kept it neutral -->
     <p class="pricing-sub">
       Choose Free to start quickly, Professional for structured vulnerability operations, or Enterprise to scale remediation and compliance.
     </p>
@@ -1201,22 +1181,21 @@
     <div class="compare-card" aria-label="Plans comparison">
       <div class="compare-cols">
 
-        <!-- FREE -->
         <div class="plan-col free">
           <h3>Free Edition</h3>
 
           <div class="plan-price">
-            <span class="plan-kicker">FREE</span>
+            <span class="plan-kicker">STARTS AT</span>
             <div class="plan-amount-row">
               <span class="amt">$0.00</span>
-              <span class="unit">up to 25 devices</span>
+              <span class="unit">/ up to 25 devices</span>
             </div>
           </div>
 
           <div class="plan-divider" aria-hidden="true"></div>
 
           <ul class="plan-list">
-            <li class="tick-green">Includes all features of Professional edition.</li>
+            <li class="tick-green">Includes all features of Professional Edition</li>
           </ul>
 
           <div class="plan-cta-row">
@@ -1224,8 +1203,7 @@
           </div>
         </div>
 
-        <!-- PROFESSIONAL -->
-        <div class="plan-col">
+        <div class="plan-col pro">
           <h3>Professional Edition</h3>
 
           <div class="plan-price">
@@ -1239,9 +1217,9 @@
           <div class="plan-divider" aria-hidden="true"></div>
 
           <ul class="plan-list">
-            <li>Vulnerability assessment</li>
+            <li>Vulnerability scanning &amp; assessment</li>
             <li>System misconfiguration detection</li>
-            <li>High-risk software detection</li>
+            <li>Secure configuration deployment</li>
           </ul>
 
           <div class="plan-cta-row">
@@ -1249,8 +1227,7 @@
           </div>
         </div>
 
-        <!-- ENTERPRISE -->
-        <div class="plan-col enterprise">
+        <div class="plan-col ent">
           <h3>Enterprise Edition</h3>
 
           <div class="plan-price">
@@ -1264,10 +1241,9 @@
           <div class="plan-divider" aria-hidden="true"></div>
 
           <ul class="plan-list">
-            <li class="tick-green">All Professional Edition features</li>
+            <li>All Professional Edition features</li>
+            <li>Built-in patch management</li>
             <li>Zero-day vulnerability mitigation</li>
-            <li>Automated patch deployment</li>
-            <li>Compliance &amp; Network Devices</li>
           </ul>
 
           <div class="plan-cta-row">
@@ -1279,8 +1255,9 @@
     </div>
 
     <p class="pricing-footnote">
-      *As the number of endpoints increases, the price per endpoint decreases.
-      For full pricing, visit <a href="https://store.manageengine.com/vulnerability-management/" rel="noopener" target="_blank">ME store</a>
+      <strong>*As the number of endpoints increases, the price per endpoint decreases.</strong><br/>
+      For full pricing, visit
+      <a href="https://store.manageengine.com/vulnerability-management/" rel="noopener" target="_blank">ME store</a>.
     </p>
 
     <div class="request-demo-band" aria-label="Request demo banner">
