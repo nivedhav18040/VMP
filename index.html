@@ -12,7 +12,7 @@
 
   <style>
     :root{
-      /* VMP palette: Blue first; red used as accent (reduced hue overall) */
+      /* VMP palette */
       --blue:#0a66c2;
       --blue-2:#2563eb;
       --blue-deep:#0f2a44;
@@ -41,10 +41,11 @@
     body{
       font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--dark);
-      /* reduced reds on the page background */
+      /* Mild blue + red hues across the page (not overpowering) */
       background:
-        radial-gradient(900px 520px at 14% -10%, rgba(37,99,235,0.08), transparent 60%),
-        radial-gradient(900px 520px at 86% 0%, rgba(229,57,53,0.04), transparent 60%),
+        radial-gradient(900px 520px at 12% -8%, rgba(37,99,235,0.10), transparent 60%),
+        radial-gradient(900px 520px at 92% 6%, rgba(229,57,53,0.07), transparent 62%),
+        radial-gradient(900px 520px at 40% 115%, rgba(255,90,95,0.05), transparent 60%),
         #fff;
       line-height:1.6;
     }
@@ -130,8 +131,8 @@
       text-align:center;
 
       background:
-        radial-gradient(900px 420px at 20% 10%, rgba(255,90,95,0.12), transparent 60%), /* reduced red */
-        radial-gradient(900px 420px at 80% 10%, rgba(37,99,235,0.22), transparent 62%),
+        radial-gradient(900px 420px at 20% 10%, rgba(255,90,95,0.14), transparent 60%),
+        radial-gradient(900px 420px at 80% 10%, rgba(37,99,235,0.24), transparent 62%),
         linear-gradient(135deg, var(--blue-deep), #1e4f91, var(--blue-2));
     }
     .hero::before{
@@ -152,7 +153,7 @@
       right:-70px;
       width:440px;
       height:440px;
-      background:radial-gradient(circle,rgba(229,57,53,0.10),transparent 70%); /* reduced red */
+      background:radial-gradient(circle,rgba(229,57,53,0.12),transparent 70%);
       border-radius:50%;
       pointer-events:none;
     }
@@ -191,7 +192,7 @@
     .btn-primary{
       background:linear-gradient(135deg, var(--red), var(--red-2));
       color:#0b1220;
-      box-shadow:0 14px 30px rgba(229,57,53,0.20); /* reduced */
+      box-shadow:0 14px 30px rgba(229,57,53,0.22);
     }
     .btn-primary:hover{
       transform:translateY(-1px);
@@ -200,12 +201,12 @@
     }
     @keyframes blinkGlow{
       0%,100%{
-        box-shadow:0 14px 30px rgba(229,57,53,0.20),
+        box-shadow:0 14px 30px rgba(229,57,53,0.22),
                    0 0 0 rgba(255,255,255,0.0);
       }
       50%{
-        box-shadow:0 18px 44px rgba(229,57,53,0.28),
-                   0 0 22px rgba(255,255,255,0.16);
+        box-shadow:0 18px 44px rgba(229,57,53,0.30),
+                   0 0 22px rgba(255,255,255,0.18);
       }
     }
     .btn:focus-visible{
@@ -213,7 +214,6 @@
       outline-offset:3px;
     }
 
-    /* hero subline (white, below buttons) */
     .hero-subline{
       margin: 14px auto 0;
       color: rgba(255,255,255,0.92);
@@ -238,7 +238,7 @@
       padding:62px 0 50px;
       background:
         radial-gradient(900px 420px at 12% 0%, rgba(37,99,235,0.08), transparent 60%),
-        radial-gradient(900px 420px at 88% 0%, rgba(229,57,53,0.03), transparent 60%), /* reduced red */
+        radial-gradient(900px 420px at 88% 0%, rgba(229,57,53,0.06), transparent 60%),
         linear-gradient(180deg,#ffffff 0%,#f9fbff 55%,#ffffff 100%);
       border-bottom:1px solid var(--border);
       overflow:hidden;
@@ -247,7 +247,6 @@
       content:"";
       position:absolute;
       inset:0;
-      /* local repo image */
       background-image:url("worldmap%20(1).png");
       background-repeat:no-repeat;
       background-size:contain;
@@ -292,7 +291,7 @@
       border: 1px solid rgba(15,23,42,0.06);
       background:
         radial-gradient(900px 240px at 10% 0%, rgba(37,99,235,0.06), transparent 62%),
-        radial-gradient(900px 240px at 90% 0%, rgba(229,57,53,0.03), transparent 62%), /* reduced red */
+        radial-gradient(900px 240px at 90% 0%, rgba(229,57,53,0.05), transparent 62%),
         rgba(255,255,255,0.75);
       box-shadow: 0 18px 48px rgba(15,23,42,0.06);
     }
@@ -363,8 +362,8 @@
     .coverage{
       padding: 54px 0 62px;
       background:
-        radial-gradient(900px 420px at 15% 0%, rgba(37,99,235,0.08), transparent 60%),
-        radial-gradient(900px 420px at 85% 10%, rgba(229,57,53,0.03), transparent 62%), /* reduced red */
+        radial-gradient(900px 420px at 15% 0%, rgba(37,99,235,0.09), transparent 60%),
+        radial-gradient(900px 420px at 85% 10%, rgba(229,57,53,0.06), transparent 62%),
         #fff;
       border-bottom: 1px solid rgba(15,23,42,0.06);
     }
@@ -381,7 +380,6 @@
       color:#0b1220;
     }
 
-    /* OS logos strip */
     .os-strip{
       max-width: var(--container);
       margin: 10px auto 0;
@@ -412,7 +410,7 @@
     }
     .os-logo:hover{
       transform: translateY(-2px);
-      border-color: rgba(229,57,53,0.16);
+      border-color: rgba(229,57,53,0.18);
       box-shadow: 0 18px 38px rgba(15,23,42,0.10);
     }
     @media (max-width: 520px){
@@ -434,6 +432,17 @@
       border-radius:18px;
       padding: 14px 12px;
       box-shadow: 0 14px 34px rgba(15,23,42,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    /* mild red/blue accent line */
+    .coverage-metric::before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height:3px;
+      background: linear-gradient(90deg, rgba(37,99,235,0.65), rgba(229,57,53,0.55));
+      opacity:0.55;
     }
     .coverage-metric strong{
       display:inline-block;
@@ -461,8 +470,8 @@
     .prio{
       padding: calc(var(--section-y) - 8px) 0;
       background:
-        radial-gradient(900px 420px at 12% 0%, rgba(37,99,235,0.08), transparent 60%),
-        radial-gradient(900px 420px at 88% 0%, rgba(229,57,53,0.03), transparent 62%), /* reduced red */
+        radial-gradient(900px 420px at 12% 0%, rgba(37,99,235,0.10), transparent 60%),
+        radial-gradient(900px 420px at 88% 0%, rgba(229,57,53,0.06), transparent 62%),
         linear-gradient(180deg,#ffffff 0%,#f8fafc 65%, #ffffff 100%);
       border-bottom: 1px solid rgba(15,23,42,0.06);
       overflow:hidden;
@@ -474,7 +483,7 @@
       left:-140px;
       top:-140px;
       width:320px; height:320px;
-      background: radial-gradient(circle, rgba(229,57,53,0.08), transparent 68%); /* subtle red accent */
+      background: radial-gradient(circle, rgba(229,57,53,0.10), transparent 68%);
       border-radius:50%;
       filter: blur(2px);
       pointer-events:none;
@@ -485,7 +494,7 @@
       right:-160px;
       bottom:-160px;
       width:420px; height:420px;
-      background: radial-gradient(circle, rgba(37,99,235,0.10), transparent 70%);
+      background: radial-gradient(circle, rgba(37,99,235,0.12), transparent 70%);
       border-radius:50%;
       pointer-events:none;
     }
@@ -503,27 +512,6 @@
       letter-spacing: -0.02em;
       color:#0b1220;
       margin-bottom:10px;
-    }
-
-    /* highlighted micro-line + small graphic */
-    .prio-micro{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(15,23,42,0.10);
-      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
-      font-weight: 1000;
-      color:#0b1220;
-      margin: 0 auto 12px;
-    }
-    .prio-dot{
-      width:10px; height:10px; border-radius:50%;
-      background: linear-gradient(135deg, var(--blue-2), rgba(229,57,53,0.75));
-      box-shadow: 0 10px 18px rgba(37,99,235,0.20);
     }
     .prio-sub{
       margin: 0 auto;
@@ -562,8 +550,8 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(700px 220px at 20% 0%, rgba(37,99,235,0.06), transparent 62%),
-        radial-gradient(700px 220px at 80% 0%, rgba(229,57,53,0.04), transparent 62%);
+        radial-gradient(700px 220px at 20% 0%, rgba(37,99,235,0.08), transparent 62%),
+        radial-gradient(700px 220px at 80% 0%, rgba(229,57,53,0.05), transparent 62%);
       opacity:0;
       transition: opacity .22s ease;
       pointer-events:none;
@@ -583,18 +571,35 @@
       gap:10px;
       margin-bottom:10px;
     }
+
+    /* NEW: icon circle looks like a real icon, not letter pills */
     .prio-icon{
-      width:38px; height:38px;
+      width:40px; height:40px;
       border-radius: 14px;
       display:flex;
       align-items:center;
       justify-content:center;
       background: rgba(37,99,235,0.08);
       border: 1px solid rgba(37,99,235,0.16);
-      font-weight: 1000;
-      color: var(--blue-2);
+      box-shadow: 0 10px 22px rgba(15,23,42,0.06);
       flex: 0 0 auto;
     }
+    .prio-icon svg{
+      width:20px;
+      height:20px;
+      stroke: var(--blue-2);
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    /* slight red hint on hover */
+    .prio-card:hover .prio-icon{
+      border-color: rgba(229,57,53,0.22);
+      background: rgba(229,57,53,0.06);
+    }
+    .prio-card:hover .prio-icon svg{ stroke: rgba(229,57,53,0.95); }
+
     .prio-card h3{
       font-size: 15px;
       font-weight: 1000;
@@ -603,7 +608,6 @@
       line-height: 1.2;
     }
 
-    /* EDLP-like hover reveal: show only a short teaser, reveal body on hover */
     .prio-teaser{
       position:relative;
       z-index:1;
@@ -624,7 +628,7 @@
       z-index:1;
     }
     .prio-card:hover .prio-body{
-      max-height: 140px;
+      max-height: 150px;
       opacity: 1;
     }
 
@@ -651,11 +655,37 @@
     .features{
       padding:var(--section-y) 0;
       background:
-        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.08), transparent 62%),
-        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.03), transparent 62%), /* reduced red */
+        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.10), transparent 62%),
+        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.06), transparent 62%),
         var(--bg-light);
       text-align:center;
+      position:relative;
+      overflow:hidden;
     }
+    .features::before{
+      content:"";
+      position:absolute;
+      left:-160px;
+      top:40px;
+      width:420px;
+      height:420px;
+      background: radial-gradient(circle, rgba(37,99,235,0.08), transparent 70%);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .features::after{
+      content:"";
+      position:absolute;
+      right:-200px;
+      bottom:-180px;
+      width:520px;
+      height:520px;
+      background: radial-gradient(circle, rgba(229,57,53,0.06), transparent 72%);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .features > *{ position:relative; z-index:1; }
+
     .feature-heading{
       font-size:32px;
       line-height:1.25;
@@ -699,16 +729,15 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 260px at 20% 0%, rgba(37,99,235,0.06), transparent 62%),
-        radial-gradient(900px 260px at 80% 0%, rgba(229,57,53,0.04), transparent 62%); /* reduced red */
+        radial-gradient(900px 260px at 20% 0%, rgba(37,99,235,0.08), transparent 62%),
+        radial-gradient(900px 260px at 80% 0%, rgba(229,57,53,0.05), transparent 62%);
       opacity:0;
       transition:opacity .25s ease;
       pointer-events:none;
     }
     .card:hover::before{ opacity:1; }
     .card:hover{
-      background-color:#ffffff;
-      border-color:rgba(229,57,53,0.22); /* reduced red */
+      border-color:rgba(229,57,53,0.22);
       box-shadow:0 28px 60px rgba(37,99,235,0.12);
       transform:translateY(-2px);
     }
@@ -765,8 +794,8 @@
     .video-placeholder{
       padding: var(--section-y) 0;
       background:
-        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.08), transparent 62%),
-        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.03), transparent 62%), /* reduced red */
+        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.10), transparent 62%),
+        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.06), transparent 62%),
         #ffffff;
       border-bottom: 1px solid rgba(15,23,42,0.06);
     }
@@ -796,7 +825,7 @@
       border: 1px dashed rgba(15,23,42,0.18);
       background:
         radial-gradient(900px 360px at 20% 10%, rgba(37,99,235,0.10), transparent 62%),
-        radial-gradient(900px 360px at 80% 0%, rgba(229,57,53,0.04), transparent 65%), /* reduced red */
+        radial-gradient(900px 360px at 80% 0%, rgba(229,57,53,0.06), transparent 65%),
         linear-gradient(180deg,#f8fafc 0%, #ffffff 65%);
       box-shadow: 0 18px 48px rgba(15,23,42,0.08);
       padding: 44px 20px;
@@ -832,8 +861,8 @@
     .pricing-compare{
       padding: calc(var(--section-y) - 12px) 0;
       background:
-        radial-gradient(900px 380px at 20% 0%, rgba(229,57,53,0.05), transparent 60%), /* reduced red */
-        radial-gradient(900px 380px at 80% 10%, rgba(37,99,235,0.10), transparent 62%),
+        radial-gradient(900px 380px at 20% 0%, rgba(229,57,53,0.06), transparent 60%),
+        radial-gradient(900px 380px at 80% 10%, rgba(37,99,235,0.12), transparent 62%),
         linear-gradient(180deg,#f7faff 0%, #ffffff 65%);
     }
 
@@ -875,7 +904,7 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 360px at 18% 10%, rgba(229,57,53,0.06), transparent 62%), /* reduced red */
+        radial-gradient(900px 360px at 18% 10%, rgba(229,57,53,0.06), transparent 62%),
         radial-gradient(900px 360px at 78% 0%, rgba(37,99,235,0.10), transparent 65%);
       pointer-events:none;
     }
@@ -899,8 +928,8 @@
     }
 
     .plan-col.free{ background: rgba(22,163,74,0.03); }
-    .plan-col.pro{ background: rgba(229,57,53,0.03); } /* reduced */
-    .plan-col.ent{ background: rgba(229,57,53,0.05); } /* reduced */
+    .plan-col.pro{ background: rgba(229,57,53,0.03); }
+    .plan-col.ent{ background: rgba(229,57,53,0.05); }
 
     .plan-col h3{
       font-size: 22px;
@@ -943,7 +972,7 @@
 
     .plan-divider{
       height: 1px;
-      background: rgba(229,57,53,0.18); /* reduced */
+      background: rgba(229,57,53,0.18);
       margin: 14px 0 18px;
     }
 
@@ -973,13 +1002,12 @@
     }
     .plan-list li.tick-green::before{ color: var(--green); }
 
-    /* CTA row pinned to bottom so all pills align on same line */
     .plan-cta-row{
       margin-top: auto;
       display: flex;
       justify-content: center;
       padding-top: 18px;
-      min-height: 66px; /* keeps row height consistent */
+      min-height: 66px;
       align-items: flex-end;
     }
 
@@ -1003,13 +1031,13 @@
       box-shadow: 0 10px 26px rgba(15,23,42,0.08);
     }
     .plan-btn.pro{
-      background: rgba(255,90,95,0.16); /* light red */
+      background: rgba(255,90,95,0.16);
       color:#0b1220;
       box-shadow: 0 10px 26px rgba(15,23,42,0.08);
       border-color: rgba(229,57,53,0.20);
     }
     .plan-btn.ent{
-      background: linear-gradient(135deg, var(--red), var(--red-2)); /* proper red */
+      background: linear-gradient(135deg, var(--red), var(--red-2));
       color:#0b1220;
       border-color: transparent;
       box-shadow: 0 18px 44px rgba(229,57,53,0.20);
@@ -1036,7 +1064,7 @@
       }
     }
 
-    /* ---------- REQUEST DEMO BANNER (below pricing) ---------- */
+    /* ---------- REQUEST DEMO BANNER ---------- */
     .request-demo-band{
       padding: 22px 0 0;
       background: transparent;
@@ -1048,8 +1076,8 @@
     }
     .request-demo-card{
       background:
-        radial-gradient(900px 220px at 12% 0%, rgba(37,99,235,0.08), transparent 62%),
-        radial-gradient(900px 220px at 88% 0%, rgba(229,57,53,0.03), transparent 62%), /* reduced */
+        radial-gradient(900px 220px at 12% 0%, rgba(37,99,235,0.10), transparent 62%),
+        radial-gradient(900px 220px at 88% 0%, rgba(229,57,53,0.06), transparent 62%),
         #fff;
       border: 1px solid rgba(15,23,42,0.10);
       border-radius: 26px;
@@ -1098,8 +1126,8 @@
     .faq-section{
       padding:var(--section-y) 0;
       background:
-        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.08), transparent 62%),
-        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.03), transparent 62%), /* reduced */
+        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.10), transparent 62%),
+        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.06), transparent 62%),
         #f8fafc;
       text-align:center;
       border-top:1px solid rgba(15,23,42,0.06);
@@ -1227,14 +1255,12 @@
       >Sign up</a>
     </div>
 
-    <!-- White subline below the buttons -->
     <div class="hero-subline">
       30-day free trial • No credit card required • Free up to 25 endpoints
     </div>
   </div>
 </section>
 
-<!-- Trusted industry section immediately after hero -->
 <section class="trust-proof" aria-label="Trusted by leading brands">
   <div class="container">
     <div class="trust-head">
@@ -1256,7 +1282,7 @@
         <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/energyag-logo.png" alt="Energie AG logo"></div>
         <div class="brand-card"><img class="nhs" src="https://www.manageengine.com/ems/images/logo/nhs-logo.png" alt="NHS logo"></div>
 
-        <!-- Set B (duplicate for seamless loop) -->
+        <!-- Set B -->
         <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/capgimini-logo.png" alt="Capgemini logo"></div>
         <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/mediaset-espana-logo.png" alt="Mediaset España logo"></div>
         <div class="brand-card"><img src="https://www.manageengine.com/ems/images/logo/canon-logo.png" alt="Canon logo"></div>
@@ -1272,7 +1298,6 @@
   </div>
 </section>
 
-<!-- Multi-OS logos only + CIS + Apps -->
 <section class="coverage" aria-label="Platform coverage">
   <div class="container">
     <div class="coverage-head">
@@ -1304,21 +1329,31 @@
   </div>
 </section>
 
-<!-- Threat prioritization (5 hover cards, no useless pills) -->
-<section class="prio" aria-label="Threat prioritization">
+<!-- UPDATED: removed the "Prioritize what’s exploitable..." line, changed heading, replaced RS/EP pills with icons -->
+<section class="prio" aria-label="Risk-based prioritization">
   <div class="container">
     <div class="prio-head">
-      <div class="prio-micro"><span class="prio-dot"></span> Prioritize what’s exploitable. Detect what’s active.</div>
-      <h2>Threat prioritization</h2>
+      <h2>Prioritize by real-world risk</h2>
       <p class="prio-sub">
         Stop chasing long vulnerability lists. Triage using exploitability, probability, and real-world attack signals—so your team fixes what’s most likely to be used next.
       </p>
     </div>
 
-    <div class="prio-row" aria-label="Threat prioritization cards">
+    <div class="prio-row" aria-label="Prioritization cards">
       <div class="prio-card">
         <div class="prio-top">
-          <div class="prio-icon">RS</div>
+          <div class="prio-icon" aria-hidden="true" title="Risk score">
+            <!-- Gauge icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M20 13a8 8 0 1 0-16 0"/>
+              <path d="M12 13l4-4"/>
+              <path d="M6 13h.01"/>
+              <path d="M9 10h.01"/>
+              <path d="M12 9h.01"/>
+              <path d="M15 10h.01"/>
+              <path d="M18 13h.01"/>
+            </svg>
+          </div>
           <h3>Risk score (0–10)</h3>
         </div>
         <div class="prio-teaser">One composite score for fast triage.</div>
@@ -1327,7 +1362,13 @@
 
       <div class="prio-card">
         <div class="prio-top">
-          <div class="prio-icon">EP</div>
+          <div class="prio-icon" aria-hidden="true" title="EPSS probability">
+            <!-- Trend icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M3 17l6-6 4 4 8-8"/>
+              <path d="M21 7v6h-6"/>
+            </svg>
+          </div>
           <h3>EPSS probability (0–1)</h3>
         </div>
         <div class="prio-teaser">Exploit likelihood over the next 30 days.</div>
@@ -1336,7 +1377,13 @@
 
       <div class="prio-card">
         <div class="prio-top">
-          <div class="prio-icon">CV</div>
+          <div class="prio-icon" aria-hidden="true" title="CVSS scoring">
+            <!-- Badge/check icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
           <h3>CVSS v3 / v4</h3>
         </div>
         <div class="prio-teaser">Normalized scoring for consistent reporting.</div>
@@ -1345,7 +1392,12 @@
 
       <div class="prio-card">
         <div class="prio-top">
-          <div class="prio-icon">AX</div>
+          <div class="prio-icon" aria-hidden="true" title="Actively exploited">
+            <!-- Flame icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2c2 4-1 5 2 8 2 2 4 3 4 7a6 6 0 1 1-12 0c0-3 2-5 4-7 2-2 1-4 2-8z"/>
+            </svg>
+          </div>
           <h3>Actively exploited</h3>
         </div>
         <div class="prio-teaser">Confirmed in-the-wild attacks.</div>
@@ -1354,7 +1406,20 @@
 
       <div class="prio-card">
         <div class="prio-top">
-          <div class="prio-icon">EX</div>
+          <div class="prio-icon" aria-hidden="true" title="Exploit listings">
+            <!-- Bug icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M8 9h8"/>
+              <path d="M9 9V7a3 3 0 0 1 6 0v2"/>
+              <path d="M7 13h10"/>
+              <path d="M12 9v12"/>
+              <path d="M5 12l2 1"/>
+              <path d="M19 12l-2 1"/>
+              <path d="M6 18l2-1"/>
+              <path d="M18 18l-2-1"/>
+              <path d="M9 21h6"/>
+            </svg>
+          </div>
           <h3>Exploit listings</h3>
         </div>
         <div class="prio-teaser">How attacker-ready is the vulnerability?</div>
