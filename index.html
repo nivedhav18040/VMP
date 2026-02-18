@@ -12,7 +12,7 @@
 
   <style>
     :root{
-      /* VMP palette: Blue + Red (mild use) */
+      /* VMP palette: Blue + Red */
       --blue:#0a66c2;
       --blue-2:#2563eb;
       --blue-deep:#0f2a44;
@@ -27,6 +27,7 @@
       --bg-light:#f8fafc;
 
       --radius:16px;
+      --shadow-sm:0 10px 24px rgba(15,23,42,0.08);
       --shadow-md:0 20px 40px rgba(15,23,42,0.10);
 
       --container:1280px;
@@ -43,7 +44,7 @@
       color:var(--dark);
       background:
         radial-gradient(900px 520px at 14% -10%, rgba(37,99,235,0.06), transparent 60%),
-        radial-gradient(900px 520px at 86% 0%, rgba(229,57,53,0.04), transparent 60%),
+        radial-gradient(900px 520px at 86% 0%, rgba(229,57,53,0.06), transparent 60%),
         #fff;
       line-height:1.6;
     }
@@ -80,7 +81,7 @@
       gap:12px;
       white-space:nowrap;
     }
-    .logo img{ height:26px; width:auto; }
+    .logo img{ height:30px; width:auto; }
 
     nav{
       display:flex;
@@ -92,7 +93,7 @@
     nav a{
       text-decoration:none;
       color:var(--dark);
-      font-weight:900;
+      font-weight:850;
       padding:8px 10px;
       border-radius:10px;
       transition:background .18s ease, color .18s ease, box-shadow .18s ease;
@@ -128,30 +129,18 @@
       padding:64px 0 66px;
       text-align:center;
       background:
-        radial-gradient(900px 420px at 20% 10%, rgba(255,90,95,0.14), transparent 60%),
-        radial-gradient(900px 420px at 80% 10%, rgba(37,99,235,0.20), transparent 62%),
+        radial-gradient(900px 420px at 20% 10%, rgba(255,90,95,0.18), transparent 60%),
+        radial-gradient(900px 420px at 80% 10%, rgba(37,99,235,0.18), transparent 62%),
         linear-gradient(135deg, var(--blue-deep), #1e4f91, var(--blue-2));
     }
     .hero::before{
       content:"";
       position:absolute;
-      top:-60px;
-      left:-60px;
-      width:520px;
-      height:520px;
-      background:radial-gradient(circle,rgba(255,255,255,0.06),transparent 70%);
-      border-radius:50%;
-      pointer-events:none;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;
-      bottom:-70px;
-      right:-70px;
-      width:440px;
-      height:440px;
-      background:radial-gradient(circle,rgba(229,57,53,0.12),transparent 70%);
-      border-radius:50%;
+      inset:-120px;
+      background:
+        radial-gradient(720px 340px at 25% 18%, rgba(255,255,255,0.08), transparent 62%),
+        radial-gradient(640px 320px at 75% 22%, rgba(255,255,255,0.06), transparent 66%),
+        radial-gradient(520px 260px at 50% 92%, rgba(255,255,255,0.05), transparent 62%);
       pointer-events:none;
     }
     .hero > .container{ position:relative; z-index:1; }
@@ -160,7 +149,7 @@
       font-size:46px;
       line-height:1.12;
       max-width:1080px;
-      margin:0 auto 10px;
+      margin:0 auto 14px;
       letter-spacing:-0.035em;
     }
     .hero-title-main{ color:#fff; font-weight:900; }
@@ -170,18 +159,8 @@
       justify-content:center;
       gap:24px;
       flex-wrap:wrap;
-      margin-top:6px;
+      margin-top:10px;
     }
-
-    .hero-subline{
-      margin: 14px auto 0;
-      color: #ffffff;
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0.01em;
-      opacity: 0.95;
-    }
-
     .btn{
       min-width:220px;
       padding:16px 34px;
@@ -192,21 +171,27 @@
       transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
       display:inline-block;
       text-align:center;
-      border:2px solid rgba(255,255,255,0.10);
+      border:2px solid rgba(255,255,255,0.12);
       user-select:none;
     }
     .btn-primary{
       background:linear-gradient(135deg, var(--red), var(--red-2));
       color:#0b1220;
-      box-shadow:0 14px 30px rgba(229,57,53,0.18);
+      box-shadow:0 14px 30px rgba(229,57,53,0.26);
     }
     .btn-primary:hover{
-      transform:translateY(-1px);
+      transform:translateY(-2px);
       filter:brightness(1.02);
+      box-shadow:0 18px 44px rgba(229,57,53,0.30);
     }
-    .btn:focus-visible{
-      outline:3px solid rgba(255,255,255,0.35);
-      outline-offset:3px;
+
+    .hero-subline{
+      margin: 14px auto 0;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: 0.01em;
+      opacity: 0.92;
     }
 
     @media (max-width: 820px){
@@ -222,35 +207,34 @@
     .trust-proof{
       position:relative;
       padding:62px 0 50px;
-      background:
-        radial-gradient(900px 420px at 12% 0%, rgba(37,99,235,0.06), transparent 60%),
-        radial-gradient(900px 420px at 88% 0%, rgba(229,57,53,0.03), transparent 60%),
-        linear-gradient(180deg,#ffffff 0%,#f9fbff 55%,#ffffff 100%);
       border-bottom:1px solid var(--border);
       overflow:hidden;
+      background:linear-gradient(180deg,#ffffff 0%,#f9fbff 55%,#ffffff 100%);
     }
     .trust-proof::before{
       content:"";
       position:absolute;
       inset:0;
+      z-index:0;
       background-image:url("./worldmap%20(1).png");
       background-repeat:no-repeat;
-      background-size:contain;
-      background-position:center center;
-      opacity:0.20;
-      filter:grayscale(100%) contrast(92%);
+      background-size:cover;
+      background-position:center;
+      opacity:0.28;
+      filter: grayscale(100%) blur(1px) contrast(110%);
       pointer-events:none;
     }
     .trust-proof::after{
       content:"";
       position:absolute;
       inset:0;
-      background:radial-gradient(ellipse at center,
+      z-index:1;
+      background: radial-gradient(ellipse at center,
         rgba(255,255,255,0.0) 35%,
-        rgba(255,255,255,0.82) 86%);
+        rgba(255,255,255,0.78) 86%);
       pointer-events:none;
     }
-    .trust-proof > .container{ position:relative; z-index:1; }
+    .trust-proof > .container{ position:relative; z-index:2; }
 
     .trust-head{ text-align:center; margin-bottom:18px; }
     .trust-head h2{
@@ -276,9 +260,9 @@
       border-radius: 22px;
       border: 1px solid rgba(15,23,42,0.06);
       background:
-        radial-gradient(900px 240px at 10% 0%, rgba(37,99,235,0.05), transparent 62%),
-        radial-gradient(900px 240px at 90% 0%, rgba(229,57,53,0.03), transparent 62%),
-        rgba(255,255,255,0.70);
+        radial-gradient(900px 240px at 10% 0%, rgba(37,99,235,0.06), transparent 62%),
+        radial-gradient(900px 240px at 90% 0%, rgba(229,57,53,0.06), transparent 62%),
+        rgba(255,255,255,0.72);
       box-shadow: 0 18px 48px rgba(15,23,42,0.06);
     }
     .logo-marquee::before,
@@ -342,15 +326,14 @@
     @media (max-width: 640px){
       .logo-marquee::before, .logo-marquee::after{ width:64px; }
       .brand-card{ width: 180px; }
-      .trust-proof::before{ display:none; }
     }
 
     /* ---------- PLATFORM COVERAGE (logos only) ---------- */
     .coverage{
       padding: 54px 0 62px;
       background:
-        radial-gradient(900px 420px at 15% 0%, rgba(37,99,235,0.07), transparent 60%),
-        radial-gradient(900px 420px at 85% 10%, rgba(229,57,53,0.03), transparent 62%),
+        radial-gradient(900px 420px at 15% 0%, rgba(37,99,235,0.06), transparent 60%),
+        radial-gradient(900px 420px at 85% 10%, rgba(229,57,53,0.06), transparent 62%),
         #fff;
       border-bottom: 1px solid rgba(15,23,42,0.06);
     }
@@ -358,7 +341,6 @@
       text-align:center;
       max-width: 980px;
       margin: 0 auto 18px;
-      padding: 0 var(--pad-x);
     }
     .coverage-head h2{
       font-size: 28px;
@@ -370,12 +352,11 @@
     .os-strip{
       max-width: var(--container);
       margin: 10px auto 0;
-      padding: 0 var(--pad-x);
       display:flex;
       align-items:center;
       justify-content:center;
       gap:18px;
-      flex-wrap:nowrap;
+      flex-wrap:wrap;
     }
     .os-logo{
       width:64px;
@@ -390,24 +371,20 @@
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
     .os-logo img{
-      width: 46px;
-      height: 46px;
+      width: 38px;
+      height: 38px;
       object-fit: contain;
       display:block;
     }
     .os-logo:hover{
       transform: translateY(-2px);
-      border-color: rgba(229,57,53,0.18);
+      border-color: rgba(229,57,53,0.20);
       box-shadow: 0 18px 38px rgba(15,23,42,0.10);
-    }
-    @media (max-width: 520px){
-      .os-strip{ flex-wrap:wrap; }
     }
 
     .coverage-metrics{
       max-width: var(--container);
       margin: 18px auto 0;
-      padding: 0 var(--pad-x);
       display:grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
@@ -419,21 +396,7 @@
       border-radius:18px;
       padding: 14px 12px;
       box-shadow: 0 14px 34px rgba(15,23,42,0.06);
-      position:relative;
-      overflow:hidden;
     }
-    .coverage-metric::before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background:
-        radial-gradient(900px 220px at 20% 0%, rgba(37,99,235,0.08), transparent 62%),
-        radial-gradient(900px 220px at 80% 0%, rgba(229,57,53,0.05), transparent 62%);
-      opacity:0;
-      transition: opacity .22s ease;
-      pointer-events:none;
-    }
-    .coverage-metric:hover::before{ opacity:1; }
     .coverage-metric strong{
       display:inline-block;
       font-weight:1000;
@@ -442,16 +405,12 @@
       background:linear-gradient(180deg, #0b1220, var(--blue-2));
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
-      position:relative;
-      z-index:1;
     }
     .coverage-metric span{
       display:block;
       margin-top: 8px;
       font-size: 14px;
       color: var(--muted-2);
-      position:relative;
-      z-index:1;
     }
     .coverage-metric a{ text-decoration:none; }
     .coverage-metric a:hover{ text-decoration:underline; color:var(--blue-2); }
@@ -460,136 +419,148 @@
       .coverage-metrics{ grid-template-columns:1fr; }
     }
 
-    /* ---------- THREAT PRIORITIZATION (EDLP-style hover cards) ---------- */
-    .tp{
-      padding: calc(var(--section-y) - 6px) 0;
+    /* ---------- THREAT PRIORITIZATION (EDLP-style cards, no horizontal scroll) ---------- */
+    .prioritize{
+      padding: var(--section-y) 0;
       background:
-        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.08), transparent 62%),
-        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.04), transparent 62%),
-        linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
+        radial-gradient(900px 520px at 18% 0%, rgba(37,99,235,0.07), transparent 62%),
+        radial-gradient(900px 520px at 82% 10%, rgba(229,57,53,0.07), transparent 62%),
+        linear-gradient(180deg,#f8fafc 0%, #ffffff 70%);
       border-bottom: 1px solid rgba(15,23,42,0.06);
-    }
-    .tp-head{
       text-align:center;
+    }
+    .prioritize .intro{
       max-width: 980px;
-      margin: 0 auto 18px;
+      margin: 0 auto 34px;
       padding: 0 var(--pad-x);
     }
-    .tp-head h2{
-      font-size: 30px;
+    .prioritize h2{
+      font-size: 32px;
+      line-height: 1.25;
       font-weight: 1000;
       letter-spacing: -0.02em;
       color:#0b1220;
-      margin-bottom: 8px;
     }
-    .tp-head p{
-      max-width: 920px;
-      margin: 0 auto;
-      color: var(--muted-2);
+    .prioritize p{
+      margin-top: 10px;
       font-size: 16px;
+      color: var(--muted-2);
       line-height: 1.7;
     }
-
-    .tp-strip{
-      max-width: var(--container);
-      margin: 18px auto 0;
-      padding: 0 var(--pad-x);
-      display:flex;
-      gap: 14px;
-      overflow-x:auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 10px;
-    }
-    .tp-strip::-webkit-scrollbar{ height: 10px; }
-    .tp-strip::-webkit-scrollbar-thumb{
-      background: rgba(100,116,139,0.25);
+    .prioritize p strong{
+      color:#0b1220;
+      font-weight:1000;
+      background:
+        linear-gradient(90deg, rgba(255,90,95,0.18), rgba(37,99,235,0.18));
+      padding: 2px 10px;
       border-radius: 999px;
-    }
-    .tp-strip::-webkit-scrollbar-track{ background: transparent; }
-
-    .tp-card{
-      flex: 0 0 auto;
-      width: 280px;
-      scroll-snap-align: start;
-      background:#fff;
+      display:inline-block;
       border: 1px solid rgba(15,23,42,0.08);
-      border-radius: 20px;
-      box-shadow: 0 18px 44px rgba(15,23,42,0.08);
-      padding: 18px 18px 16px;
-      position:relative;
-      overflow:hidden;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-      min-height: 148px;
     }
-    .tp-card::before{
+
+    .prioritize-grid{
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display:grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .p-card{
+      position:relative;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(15,23,42,0.08);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
+      overflow:hidden;
+      padding: 18px 16px;
+      text-align:left;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      min-height: 160px;
+    }
+    .p-card::before{
       content:"";
       position:absolute;
-      inset:-1px;
+      inset:0;
       background:
         radial-gradient(900px 260px at 20% 0%, rgba(37,99,235,0.08), transparent 62%),
-        radial-gradient(900px 260px at 80% 0%, rgba(229,57,53,0.05), transparent 62%);
+        radial-gradient(900px 260px at 80% 0%, rgba(229,57,53,0.08), transparent 62%);
       opacity:0;
       transition: opacity .22s ease;
       pointer-events:none;
     }
-    .tp-card:hover{
+    .p-card:hover{
       transform: translateY(-4px);
-      border-color: rgba(229,57,53,0.20);
-      box-shadow: 0 26px 60px rgba(15,23,42,0.14);
+      border-color: rgba(37,99,235,0.26);
+      box-shadow: 0 26px 60px rgba(15,23,42,0.10);
     }
-    .tp-card:hover::before{ opacity:1; }
+    .p-card:hover::before{ opacity:1; }
 
-    .tp-top{
-      display:flex;
-      align-items:center;
-      gap: 12px;
+    .p-top{
       position:relative;
       z-index:1;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
     }
-    .tp-icon{
-      width: 44px;
-      height: 44px;
+    .p-icon{
+      width: 42px;
+      height: 42px;
       border-radius: 14px;
       display:flex;
       align-items:center;
       justify-content:center;
-      background: rgba(37,99,235,0.08);
-      border: 1px solid rgba(37,99,235,0.18);
       font-size: 20px;
-      line-height:1;
-      user-select:none;
+      border: 1px solid rgba(15,23,42,0.10);
+      background: rgba(255,255,255,0.88);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+      flex:0 0 auto;
     }
-    .tp-title{
-      font-size: 18px;
+    .p-card h3{
+      position:relative;
+      z-index:1;
+      margin-top: 10px;
+      font-size: 16px;
       font-weight: 1000;
       letter-spacing: -0.01em;
       color:#0b1220;
     }
-
-    .tp-body{
-      margin-top: 10px;
+    .p-desc{
+      position:relative;
+      z-index:1;
+      margin-top: 8px;
+      font-size: 13.5px;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.55;
       max-height: 0;
       opacity: 0;
       overflow:hidden;
-      transition: max-height .28s ease, opacity .22s ease;
-      position:relative;
-      z-index:1;
+      transition: max-height .30s ease, opacity .22s ease;
     }
-    .tp-card:hover .tp-body{
-      max-height: 140px;
+    .p-card:hover .p-desc{
+      max-height: 120px;
       opacity: 1;
+    }
+
+    @media (max-width: 1180px){
+      .prioritize-grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 760px){
+      .prioritize-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 460px){
+      .prioritize-grid{ grid-template-columns: 1fr; }
     }
 
     /* ---------- FEATURES (3 verticals with hover descriptions) ---------- */
     .features{
       padding:var(--section-y) 0;
       background:
-        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.08), transparent 62%),
-        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.04), transparent 62%),
+        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.06), transparent 62%),
+        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.06), transparent 62%),
         var(--bg-light);
       text-align:center;
     }
@@ -619,13 +590,13 @@
       grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
       gap:24px;
       padding:0 var(--pad-x);
+      text-align:left;
     }
     .card{
       background:#fff;
       padding:26px;
       border-radius:var(--radius);
       box-shadow:var(--shadow-md);
-      text-align:left;
       transition:box-shadow .25s ease, background-color .25s ease, border-color .25s ease, transform .25s ease;
       border:2px solid transparent;
       position:relative;
@@ -636,17 +607,16 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 260px at 20% 0%, rgba(37,99,235,0.07), transparent 62%),
-        radial-gradient(900px 260px at 80% 0%, rgba(229,57,53,0.04), transparent 62%);
+        radial-gradient(900px 260px at 20% 0%, rgba(37,99,235,0.06), transparent 62%),
+        radial-gradient(900px 260px at 80% 0%, rgba(229,57,53,0.06), transparent 62%);
       opacity:0;
       transition:opacity .25s ease;
       pointer-events:none;
     }
     .card:hover::before{ opacity:1; }
     .card:hover{
-      background-color:#ffffff;
-      border-color:rgba(229,57,53,0.22);
-      box-shadow:0 28px 60px rgba(37,99,235,0.12);
+      border-color:rgba(229,57,53,0.35);
+      box-shadow:0 28px 60px rgba(37,99,235,0.10);
       transform:translateY(-2px);
     }
     .card h3{
@@ -698,144 +668,118 @@
     }
     .card:hover .feature-list span{ max-height:120px; opacity:1; }
 
-    /* ---------- VIDEO CAROUSEL ---------- */
-    .video-carousel{
-      padding: var(--section-y) 0;
+    /* ---------- VIDEO CAROUSEL (EDLP-style) ---------- */
+    .carousel{
       background:
-        radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.10), transparent 62%),
-        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.04), transparent 62%),
-        #ffffff;
-      border-bottom: 1px solid rgba(15,23,42,0.06);
+        radial-gradient(1200px 500px at 20% 10%, rgba(37,99,235,0.10), transparent 60%),
+        radial-gradient(900px 420px at 80% 20%, rgba(229,57,53,0.10), transparent 62%),
+        linear-gradient(135deg, #eef6ff 0%, #fff3f4 45%, #f8fafc 100%);
+      padding:var(--section-y) 0 60px;
+      border-top: 1px solid rgba(15,23,42,0.06);
     }
+    .carousel-shell{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:0 var(--pad-x);
+      position:relative;
+    }
+    .carousel-viewport{ max-width:1240px; margin:0 auto; position:relative; }
+    .carousel-track{ width:100%; position:relative; min-height:540px; }
 
-    .vc-head{
-      text-align:center;
-      max-width: 900px;
-      margin: 0 auto 22px;
-    }
-    .vc-head h2{
-      font-size: 32px;
-      font-weight: 1000;
-      letter-spacing: -0.02em;
-      color:#0b1220;
-      margin-bottom: 10px;
-    }
-    .vc-head p{
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .vc-shell{
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 var(--pad-x);
-      display:flex;
-      align-items:center;
-      gap: 14px;
-    }
-
-    .vc-stage{
-      flex:1 1 auto;
-      border-radius: 22px;
-      border: 1px solid rgba(15,23,42,0.10);
-      background:
-        radial-gradient(900px 360px at 20% 10%, rgba(37,99,235,0.10), transparent 62%),
-        radial-gradient(900px 360px at 80% 0%, rgba(229,57,53,0.05), transparent 65%),
-        linear-gradient(180deg,#f8fafc 0%, #ffffff 65%);
-      box-shadow: 0 18px 48px rgba(15,23,42,0.08);
-      padding: 16px;
-      overflow:hidden;
-    }
-
-    .vc-slide{ display:none; }
-    .vc-slide.active{ display:block; animation:fadeUp 220ms ease both; }
-
-    .vc-video{
-      width: 100%;
-      border-radius: 16px;
-      background:#000;
-    }
-
-    .vc-meta{
-      padding: 12px 6px 2px;
-    }
-    .vc-meta h3{
-      font-size: 18px;
-      font-weight: 1000;
-      letter-spacing: -0.01em;
-      color:#0b1220;
-      margin-bottom: 4px;
-    }
-    .vc-meta p{
-      color: var(--muted-2);
-      font-size: 14px;
-    }
-
-    .vc-nav{
-      border:none;
-      background:#fff;
-      font-size:24px;
-      width:46px;
-      height:46px;
-      border-radius:50%;
-      color:#64748b;
-      cursor:pointer;
-      box-shadow:0 10px 24px rgba(15,23,42,0.14);
-      transition:transform .18s ease, color .18s ease;
-      flex:0 0 auto;
-      transform: translateY(-2px);
-    }
-    .vc-nav:hover{ color:var(--red); transform:scale(1.08); }
-    .vc-nav:focus-visible{ outline:3px solid rgba(37,99,235,0.26); outline-offset:3px; }
-
-    .vc-dots{
-      margin: 14px auto 0;
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      align-items:center;
-    }
-    .vc-dot{
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      border: none;
-      cursor:pointer;
-      background: rgba(100,116,139,0.35);
-      transition: transform .18s ease, background .18s ease, width .18s ease;
-    }
-    .vc-dot.active{
-      width: 26px;
-      background: rgba(37,99,235,0.55);
-    }
-    .vc-dot:hover{ transform: scale(1.1); }
-
-    @media (max-width: 640px){
-      .vc-shell{ flex-direction:column; }
-      .vc-nav{ width:100%; border-radius:14px; height:44px; }
-    }
+    .carousel-item{ display:none; flex-direction:column; align-items:center; text-align:center; }
+    .carousel-item.active{ display:flex; animation:fadeUp 280ms ease both; }
 
     @keyframes fadeUp{
       from{ opacity:0; transform:translateY(8px); }
       to{ opacity:1; transform:translateY(0); }
     }
 
+    .carousel-caption{ max-width:920px; margin-bottom:16px; padding:0 12px; }
+    .carousel-caption strong{
+      font-size:32px;
+      font-weight:1000;
+      letter-spacing:-0.035em;
+      color:#0b1220;
+    }
+    .carousel-caption p{ margin-top:10px; font-size:16px; color:#475569; }
+
+    .carousel-item video{
+      width:100%;
+      max-width:1100px;
+      height:440px;
+      object-fit:contain;
+      background:transparent;
+      filter:drop-shadow(0 18px 34px rgba(15,23,42,0.18));
+      border-radius:14px;
+      margin:0 auto 26px;
+    }
+
+    .carousel-nav{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:12px;
+      padding:0 10px;
+    }
+    .carousel-dot{
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.78);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(148,163,184,0.55);
+      color:#0f172a;
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:-0.01em;
+      transition:transform .16s ease, background .16s ease, border-color .16s ease;
+      cursor:pointer;
+    }
+    .carousel-dot:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,0.94);
+      border-color:rgba(37,99,235,0.35);
+    }
+    .carousel-dot.active{
+      background:linear-gradient(135deg, rgba(37,99,235,0.90), rgba(229,57,53,0.86));
+      border-color:transparent;
+      color:#fff;
+      box-shadow:0 14px 34px rgba(37,99,235,0.18);
+    }
+    .carousel-dot .pill{
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      background:rgba(100,116,139,0.55);
+      display:inline-block;
+      margin-right:8px;
+      vertical-align:middle;
+    }
+    .carousel-dot.active .pill{ background:rgba(255,255,255,0.95); }
+    .carousel-dot:focus-visible{
+      outline:3px solid rgba(37,99,235,0.22);
+      outline-offset:3px;
+    }
+
+    @media (max-width: 900px){
+      .carousel-item video{ height:320px; }
+      .carousel-track{ min-height:410px; }
+      .carousel-caption strong{ font-size:28px; }
+    }
+
     /* ---------- PRICING ---------- */
     .pricing-compare{
       padding: calc(var(--section-y) - 12px) 0;
       background:
-        radial-gradient(900px 380px at 20% 0%, rgba(229,57,53,0.05), transparent 60%),
-        radial-gradient(900px 380px at 80% 10%, rgba(37,99,235,0.10), transparent 62%),
+        radial-gradient(900px 380px at 20% 0%, rgba(229,57,53,0.08), transparent 60%),
+        radial-gradient(900px 380px at 80% 10%, rgba(37,99,235,0.08), transparent 62%),
         linear-gradient(180deg,#f7faff 0%, #ffffff 65%);
     }
-
     .pricing-wrap{
       max-width: var(--container);
       margin: 0 auto;
       padding: 0 var(--pad-x);
       text-align: center;
     }
-
     .pricing-title{
       font-size: 36px;
       font-weight: 1000;
@@ -843,7 +787,6 @@
       color: #0b1220;
       margin-bottom: 10px;
     }
-
     .pricing-sub{
       max-width: 920px;
       margin: 0 auto 34px;
@@ -867,8 +810,8 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 360px at 18% 10%, rgba(229,57,53,0.06), transparent 62%),
-        radial-gradient(900px 360px at 78% 0%, rgba(37,99,235,0.10), transparent 65%);
+        radial-gradient(900px 360px at 18% 10%, rgba(229,57,53,0.10), transparent 62%),
+        radial-gradient(900px 360px at 78% 0%, rgba(37,99,235,0.08), transparent 65%);
       pointer-events:none;
     }
 
@@ -884,6 +827,7 @@
       text-align: left;
       display:flex;
       flex-direction:column;
+      min-height: 360px;
     }
 
     .plan-col + .plan-col{
@@ -892,7 +836,7 @@
 
     .plan-col.free{ background: rgba(22,163,74,0.03); }
     .plan-col.pro{ background: rgba(229,57,53,0.03); }
-    .plan-col.ent{ background: rgba(229,57,53,0.05); }
+    .plan-col.ent{ background: rgba(229,57,53,0.06); }
 
     .plan-col h3{
       font-size: 22px;
@@ -901,8 +845,6 @@
       margin: 8px 0 14px;
       color: #0b1220;
     }
-
-    .plan-price{ margin-bottom: 12px; }
 
     .plan-kicker{
       display: inline-block;
@@ -945,7 +887,6 @@
       margin: 0;
       display: grid;
       gap: 12px;
-      flex: 1 1 auto;
     }
 
     .plan-list li{
@@ -967,11 +908,11 @@
     .plan-list li.tick-green::before{ color: var(--green); }
 
     .plan-cta-row{
-      margin-top: 18px;
-      display: flex;
-      justify-content: center;
-      min-height: 54px; /* keeps all CTAs aligned */
-      align-items:flex-end;
+      margin-top:auto;
+      padding-top: 20px;
+      display:flex;
+      justify-content:center;
+      min-height: 56px; /* keeps all 3 aligned */
     }
 
     .plan-btn{
@@ -993,16 +934,16 @@
       box-shadow: 0 10px 26px rgba(15,23,42,0.08);
     }
     .plan-btn.pro{
-      background: rgba(255,90,95,0.16);
+      background: rgba(255,90,95,0.18);
       color:#0b1220;
       box-shadow: 0 10px 26px rgba(15,23,42,0.08);
-      border-color: rgba(229,57,53,0.22);
+      border-color: rgba(229,57,53,0.24);
     }
     .plan-btn.ent{
       background: linear-gradient(135deg, var(--red), var(--red-2));
       color:#0b1220;
       border-color: transparent;
-      box-shadow: 0 18px 44px rgba(229,57,53,0.18);
+      box-shadow: 0 18px 44px rgba(229,57,53,0.20);
     }
 
     .plan-btn:hover{
@@ -1024,64 +965,7 @@
         border-left: none;
         border-top: 1px solid rgba(15,23,42,0.08);
       }
-    }
-
-    /* ---------- REQUEST DEMO BANNER (below pricing) ---------- */
-    .request-demo-band{
-      padding: 22px 0 0;
-      background: transparent;
-    }
-    .request-demo-inner{
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 var(--pad-x) 8px;
-    }
-    .request-demo-card{
-      background:
-        radial-gradient(900px 220px at 12% 0%, rgba(37,99,235,0.06), transparent 62%),
-        radial-gradient(900px 220px at 88% 0%, rgba(229,57,53,0.03), transparent 62%),
-        #fff;
-      border: 1px solid rgba(15,23,42,0.10);
-      border-radius: 26px;
-      box-shadow: 0 14px 44px rgba(15,23,42,0.08);
-      padding: 22px 22px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 18px;
-    }
-    .request-demo-card h3{
-      margin:0;
-      font-size: 20px;
-      font-weight: 1000;
-      letter-spacing: -0.02em;
-      color:#0b1220;
-    }
-    .request-demo-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 18px;
-      border-radius: 999px;
-      border: 1.5px solid rgba(15,23,42,0.16);
-      background:#fff;
-      font-weight: 1000;
-      text-decoration:none;
-      gap: 10px;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      white-space:nowrap;
-    }
-    .request-demo-btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(15,23,42,0.12);
-      border-color: rgba(229,57,53,0.22);
-    }
-    @media (max-width: 760px){
-      .request-demo-card{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-      .request-demo-btn{ width:100%; justify-content:center; }
+      .plan-col{ min-height: auto; }
     }
 
     /* ---------- FAQ SECTION ---------- */
@@ -1089,7 +973,7 @@
       padding:var(--section-y) 0;
       background:
         radial-gradient(900px 520px at 15% 0%, rgba(37,99,235,0.06), transparent 62%),
-        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.03), transparent 62%),
+        radial-gradient(900px 520px at 85% 0%, rgba(229,57,53,0.06), transparent 62%),
         #f8fafc;
       text-align:center;
       border-top:1px solid rgba(15,23,42,0.06);
@@ -1135,7 +1019,7 @@
     .faq-item.active{ display:block; }
     .faq-item h3{ font-size:18px; font-weight:1000; margin-bottom:10px; }
     .faq-item p{ font-size:15px; line-height:1.7; color:#475569; }
-    .faq-item a{ color:var(--blue-2); text-decoration:underline; }
+    .faq-item a{ color:var(--blue-2); text-decoration:underline; font-weight:850; }
 
     .faq-nav{
       border:none;
@@ -1152,7 +1036,7 @@
       transform: translateY(-2px);
     }
     .faq-nav:hover{ color:var(--red); transform:scale(1.08); }
-    .faq-nav:focus-visible{ outline:3px solid rgba(229,57,53,0.20); outline-offset:3px; }
+    .faq-nav:focus-visible{ outline:3px solid rgba(229,57,53,0.22); outline-offset:3px; }
 
     @media (max-width: 640px){
       .faq-carousel{ flex-direction:column; }
@@ -1177,15 +1061,15 @@
 <header>
   <div class="header-inner">
     <div class="logo">
-      <img src="Vulnerability%20Manager%20Plus_Black.png" alt="Vulnerability Manager Plus logo">
+      <img src="./Vulnerability%20Manager%20Plus_Black.png" alt="Vulnerability Manager Plus logo">
     </div>
 
     <nav aria-label="Primary">
-      <a href="https://www.manageengine.com/vulnerability-management/features.html">Features</a>
-      <a href="https://www.manageengine.com/vulnerability-management/request-demo.html">Demo</a>
-      <a href="https://www.manageengine.com/vulnerability-management/help.html">Documents</a>
-      <a href="https://www.manageengine.com/vulnerability-management/get-quote.html">Get Quote</a>
-      <a href="https://www.manageengine.com/vulnerability-management/support.html">Support</a>
+      <a href="https://www.manageengine.com/vulnerability-management/features.html" target="_blank" rel="noopener">Features</a>
+      <a href="https://www.manageengine.com/vulnerability-management/request-demo.html" target="_blank" rel="noopener">Demo</a>
+      <a href="https://www.manageengine.com/vulnerability-management/help.html" target="_blank" rel="noopener">Documents</a>
+      <a href="https://www.manageengine.com/vulnerability-management/get-quote.html" target="_blank" rel="noopener">Get Quote</a>
+      <a href="https://www.manageengine.com/vulnerability-management/support.html" target="_blank" rel="noopener">Support</a>
     </nav>
   </div>
 </header>
@@ -1212,11 +1096,12 @@
       >Sign up</a>
     </div>
 
-    <div class="hero-subline">30-day free trial • No credit card required · Free up to 25 endpoints</div>
+    <div class="hero-subline">
+      30-day free trial · No credit card required · Free up to 25 endpoints
+    </div>
   </div>
 </section>
 
-<!-- Trusted industry section immediately after hero -->
 <section class="trust-proof" aria-label="Trusted by leading brands">
   <div class="container">
     <div class="trust-head">
@@ -1254,7 +1139,6 @@
   </div>
 </section>
 
-<!-- Multi-OS logos only + CIS + Apps -->
 <section class="coverage" aria-label="Platform coverage">
   <div class="container">
     <div class="coverage-head">
@@ -1286,66 +1170,53 @@
   </div>
 </section>
 
-<!-- Threat Prioritization (hover cards, EDLP vibe) -->
-<section class="tp" aria-label="Risk-based prioritization">
-  <div class="container">
-    <div class="tp-head">
-      <h2>Prioritize with real-world risk signals</h2>
-      <p>
-        Cut through noise using scoring, exploit context, and active-attack indicators—so the riskiest issues get fixed first.
-      </p>
+<section class="prioritize" aria-label="Threat prioritization">
+  <div class="intro">
+    <h2>Prioritize with real-world risk signals</h2>
+    <p>
+      Stop sorting endless CVEs. Use <strong>exploitation likelihood</strong>, scoring, and active-threat context to drive faster remediation.
+    </p>
+  </div>
+
+  <div class="prioritize-grid" aria-label="Risk signals">
+    <div class="p-card">
+      <div class="p-top">
+        <div class="p-icon" aria-hidden="true">🎯</div>
+      </div>
+      <h3>Risk score (0–10)</h3>
+      <div class="p-desc">A single priority score blending exploitability, prevalence, business impact, and trend signals.</div>
     </div>
 
-    <div class="tp-strip" aria-label="Risk signal cards">
-      <div class="tp-card">
-        <div class="tp-top">
-          <div class="tp-icon" aria-hidden="true">🎯</div>
-          <div class="tp-title">Risk score (0–10)</div>
-        </div>
-        <div class="tp-body">
-          A single priority score that blends exploitability, prevalence, impact, and trend signals for faster triage.
-        </div>
+    <div class="p-card">
+      <div class="p-top">
+        <div class="p-icon" aria-hidden="true">📈</div>
       </div>
+      <h3>EPSS probability (0–1)</h3>
+      <div class="p-desc">Likely exploitation within 30 days—perfect for threshold-based SLAs and fast-tracking fixes.</div>
+    </div>
 
-      <div class="tp-card">
-        <div class="tp-top">
-          <div class="tp-icon" aria-hidden="true">📈</div>
-          <div class="tp-title">EPSS probability (0–1)</div>
-        </div>
-        <div class="tp-body">
-          Likelihood of exploitation in the next 30 days—use thresholds to fast-track remediation.
-        </div>
+    <div class="p-card">
+      <div class="p-top">
+        <div class="p-icon" aria-hidden="true">🧮</div>
       </div>
+      <h3>CVSS v3 / v4</h3>
+      <div class="p-desc">Side-by-side context during the transition—use normalized scoring across dashboards and reports.</div>
+    </div>
 
-      <div class="tp-card">
-        <div class="tp-top">
-          <div class="tp-icon" aria-hidden="true">🛡️</div>
-          <div class="tp-title">CVSS v3 / v4</div>
-        </div>
-        <div class="tp-body">
-          Side-by-side CVSS context for consistent reporting and smarter prioritization during scoring transitions.
-        </div>
+    <div class="p-card">
+      <div class="p-top">
+        <div class="p-icon" aria-hidden="true">🚨</div>
       </div>
+      <h3>Actively exploited</h3>
+      <div class="p-desc">Flags vulnerabilities confirmed in real-world attacks—treat these as immediate, elevated risk.</div>
+    </div>
 
-      <div class="tp-card">
-        <div class="tp-top">
-          <div class="tp-icon" aria-hidden="true">🔥</div>
-          <div class="tp-title">Actively exploited</div>
-        </div>
-        <div class="tp-body">
-          Flags vulnerabilities confirmed in real-world attacks—treat as immediate, elevated risk.
-        </div>
+    <div class="p-card">
+      <div class="p-top">
+        <div class="p-icon" aria-hidden="true">🧨</div>
       </div>
-
-      <div class="tp-card">
-        <div class="tp-top">
-          <div class="tp-icon" aria-hidden="true">🧨</div>
-          <div class="tp-title">Exploit listings</div>
-        </div>
-        <div class="tp-body">
-          Shows public exploit/PoC availability—more listings often means practical, attacker-ready risk.
-        </div>
-      </div>
+      <h3>Exploit listings</h3>
+      <div class="p-desc">Shows available public exploits/PoCs and links to them—more listings usually means attacker-ready risk.</div>
     </div>
   </div>
 </section>
@@ -1353,7 +1224,7 @@
 <section class="features" id="features">
   <h2 class="feature-heading">Know risk. Lock down endpoints. Move fast.</h2>
   <p class="feature-umbrella">
-    Three pillars built for real-world vulnerability operations—visibility, governance, and rapid mitigation.
+    Three pillars built for real-world vulnerability operations—visibility, hardening, and rapid mitigation.
   </p>
 
   <div class="feature-grid">
@@ -1367,30 +1238,30 @@
         </li>
         <li>
           <strong>Vulnerability Prioritization</strong>
-          <span>Combine severity, exposure, and exploit context to fix what attackers are most likely to use first.</span>
+          <span>Triage using severity, exposure, exploit likelihood, and real-world risk signals—so teams fix what matters.</span>
         </li>
         <li>
           <strong>High-risk Software Audit</strong>
-          <span>Remove unsafe apps (RDP tools, EOL, P2P) quickly to reduce exposure.</span>
+          <span>Find unsafe or unauthorized software (EOL, remote tools, P2P) and remove them from endpoints quickly.</span>
         </li>
       </ul>
     </div>
 
     <div class="card">
-      <h3>Configuration Governance</h3>
-      <p class="tagline">Build security into every endpoint.</p>
+      <h3>Audit &amp; Compliance</h3>
+      <p class="tagline">Make secure posture repeatable.</p>
       <ul class="feature-list">
         <li>
-          <strong>Secure Configuration Management</strong>
-          <span>Apply security best practices and keep endpoints aligned—detect and correct drift early.</span>
+          <strong>Configuration Governance</strong>
+          <span>Apply security best practices and prevent configuration drift across endpoints over time.</span>
         </li>
         <li>
-          <strong>CIS Benchmarking</strong>
-          <span>Measure posture against benchmark controls and identify gaps instantly.</span>
+          <strong>CIS Compliance</strong>
+          <span>Measure endpoint posture against benchmark controls and identify gaps instantly.</span>
         </li>
         <li>
           <strong>Policy Flexibility</strong>
-          <span>Customize controls to match internal standards—no forced “one-size-fits-all” compliance.</span>
+          <span>Customize checks to match internal standards and apply controls that fit your environment.</span>
         </li>
       </ul>
     </div>
@@ -1405,7 +1276,7 @@
         </li>
         <li>
           <strong>Network Quarantine</strong>
-          <span>Isolate risky endpoints to contain active threats while remediation is in progress.</span>
+          <span>Isolate risky endpoints to contain threats while remediation is in progress.</span>
         </li>
         <li>
           <strong>Zero-day Mitigation</strong>
@@ -1416,56 +1287,44 @@
   </div>
 </section>
 
-<!-- VIDEO CAROUSEL (use your repo MP4s) -->
-<section class="video-carousel" id="videos" aria-label="Video carousel">
-  <div class="container">
-    <div class="vc-head">
-      <h2>See VMP in action</h2>
-      <p>Short walkthroughs of workflows that reduce exposure—fast.</p>
-    </div>
+<section class="carousel" aria-label="VMP walkthrough" tabindex="0">
+  <div class="carousel-shell">
+    <div class="carousel-viewport">
+      <div class="carousel-track">
 
-    <div class="vc-shell">
-      <button class="vc-nav vc-prev" type="button" aria-label="Previous video">‹</button>
-
-      <div class="vc-stage" aria-live="polite">
-        <div class="vc-slide active">
-          <video class="vc-video" muted playsinline controls preload="metadata">
-            <source src="./Patch%20remediation.mp4" type="video/mp4" />
-          </video>
-          <div class="vc-meta">
-            <h3>Patch remediation</h3>
-            <p>Deploy fixes at scale with controlled workflows.</p>
+        <div class="carousel-item active" data-title="CIS Compliance">
+          <div class="carousel-caption">
+            <strong>Benchmark endpoint posture with CIS controls</strong>
+            <p>Spot configuration gaps fast and keep systems aligned with secure baselines over time.</p>
           </div>
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="./CIS%20Compliance.mp4" type="video/mp4">
+          </video>
         </div>
 
-        <div class="vc-slide">
-          <video class="vc-video" muted playsinline controls preload="metadata">
-            <source src="./CIS%20Compliance.mp4" type="video/mp4" />
-          </video>
-          <div class="vc-meta">
-            <h3>CIS compliance</h3>
-            <p>Benchmark posture and close configuration gaps.</p>
+        <div class="carousel-item" data-title="Patch remediation">
+          <div class="carousel-caption">
+            <strong>Remediate faster with patch-driven workflows</strong>
+            <p>Deploy OS and third-party patches in a controlled, scalable way—without manual chasing.</p>
           </div>
+          <video muted loop playsinline preload="metadata">
+            <source src="./Patch%20remediation.mp4" type="video/mp4">
+          </video>
         </div>
 
-        <div class="vc-slide">
-          <video class="vc-video" muted playsinline controls preload="metadata">
-            <source src="./network%20quarantine.mp4" type="video/mp4" />
-          </video>
-          <div class="vc-meta">
-            <h3>Network quarantine</h3>
-            <p>Isolate risky endpoints instantly to contain threats.</p>
+        <div class="carousel-item" data-title="Network quarantine">
+          <div class="carousel-caption">
+            <strong>Contain threats by quarantining risky endpoints</strong>
+            <p>Isolate exposed machines instantly while remediation runs—reducing blast radius during active risk.</p>
           </div>
+          <video muted loop playsinline preload="metadata">
+            <source src="./network%20quarantine.mp4" type="video/mp4">
+          </video>
         </div>
+
       </div>
 
-      <button class="vc-nav vc-next" type="button" aria-label="Next video">›</button>
-    </div>
-
-    <div class="vc-dots" role="tablist" aria-label="Choose a video">
-      <button class="vc-dot active" type="button" aria-label="Go to Patch remediation"></button>
-      <button class="vc-dot" type="button" aria-label="Go to CIS compliance"></button>
-      <button class="vc-dot" type="button" aria-label="Go to Network quarantine"></button>
+      <div class="carousel-nav" aria-label="Choose a slide"></div>
     </div>
   </div>
 </section>
@@ -1474,7 +1333,7 @@
   <div class="pricing-wrap">
     <h2 class="pricing-title">Pick the right path to control</h2>
     <p class="pricing-sub">
-      Choose Free to start quickly, Professional for structured vulnerability operations, or Enterprise to scale remediation and compliance.
+      Free to start, Professional for structured vulnerability ops, and Enterprise to scale mitigation and compliance.
     </p>
 
     <div class="compare-card" aria-label="Plans comparison">
@@ -1483,12 +1342,10 @@
         <div class="plan-col free">
           <h3>Free Edition</h3>
 
-          <div class="plan-price">
-            <span class="plan-kicker">STARTS AT</span>
-            <div class="plan-amount-row">
-              <span class="amt">$0.00</span>
-              <span class="unit">/ up to 25 devices</span>
-            </div>
+          <span class="plan-kicker">STARTS AT</span>
+          <div class="plan-amount-row">
+            <span class="amt">$0.00</span>
+            <span class="unit">/ up to 25 devices</span>
           </div>
 
           <div class="plan-divider" aria-hidden="true"></div>
@@ -1505,12 +1362,10 @@
         <div class="plan-col pro">
           <h3>Professional Edition</h3>
 
-          <div class="plan-price">
-            <span class="plan-kicker">STARTS AT</span>
-            <div class="plan-amount-row">
-              <span class="amt">$0.9</span>
-              <span class="unit">/ device / month</span>
-            </div>
+          <span class="plan-kicker">STARTS AT</span>
+          <div class="plan-amount-row">
+            <span class="amt">$0.9</span>
+            <span class="unit">/ device / month</span>
           </div>
 
           <div class="plan-divider" aria-hidden="true"></div>
@@ -1529,12 +1384,10 @@
         <div class="plan-col ent">
           <h3>Enterprise Edition</h3>
 
-          <div class="plan-price">
-            <span class="plan-kicker">STARTS AT</span>
-            <div class="plan-amount-row">
-              <span class="amt">$1.55</span>
-              <span class="unit">/ device / month</span>
-            </div>
+          <span class="plan-kicker">STARTS AT</span>
+          <div class="plan-amount-row">
+            <span class="amt">$1.55</span>
+            <span class="unit">/ device / month</span>
           </div>
 
           <div class="plan-divider" aria-hidden="true"></div>
@@ -1558,18 +1411,6 @@
       For full pricing, visit
       <a href="https://store.manageengine.com/vulnerability-management/" rel="noopener" target="_blank">ME store</a>.
     </p>
-
-    <div class="request-demo-band" aria-label="Request demo banner">
-      <div class="request-demo-inner">
-        <div class="request-demo-card">
-          <h3>Want to see how vulnerability remediation works in your environment?</h3>
-          <a class="request-demo-btn" href="https://www.manageengine.com/vulnerability-management/request-demo.html" target="_blank" rel="noopener">
-            Request a demo <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1630,6 +1471,61 @@
 </footer>
 
 <script>
+  /* ================= VIDEO CAROUSEL (EDLP-style pills only, autoplay active) ================= */
+  const carouselEl = document.querySelector(".carousel");
+  const slides = carouselEl.querySelectorAll(".carousel-item");
+  const nav = carouselEl.querySelector(".carousel-nav");
+  let currentIndex = 0;
+
+  function stopAllMedia() {
+    slides.forEach((s) => {
+      const v = s.querySelector("video");
+      if (v) { try { v.pause(); } catch (_) {} }
+    });
+  }
+
+  function playActiveMedia() {
+    const active = slides[currentIndex];
+    const v = active.querySelector("video");
+    if (v) { try { v.play(); } catch (_) {} }
+  }
+
+  function setActive(index) {
+    currentIndex = (index + slides.length) % slides.length;
+
+    slides.forEach((s) => s.classList.remove("active"));
+    slides[currentIndex].classList.add("active");
+
+    const dots = nav.querySelectorAll(".carousel-dot");
+    dots.forEach((d) => d.classList.remove("active"));
+    if (dots[currentIndex]) dots[currentIndex].classList.add("active");
+
+    stopAllMedia();
+    playActiveMedia();
+  }
+
+  function buildNav() {
+    nav.innerHTML = "";
+    slides.forEach((slide, i) => {
+      const label = slide.getAttribute("data-title") || `Slide ${i + 1}`;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "carousel-dot";
+      btn.setAttribute("aria-label", `Go to ${label}`);
+      btn.innerHTML = `<span class="pill" aria-hidden="true"></span>${label}`;
+      btn.addEventListener("click", () => setActive(i));
+      nav.appendChild(btn);
+    });
+  }
+
+  carouselEl.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") setActive(currentIndex - 1);
+    if (e.key === "ArrowRight") setActive(currentIndex + 1);
+  });
+
+  buildNav();
+  setActive(0);
+
   /* ================= FAQ CAROUSEL ================= */
   const faqItems = document.querySelectorAll(".faq-item");
   const faqPrev = document.querySelector(".faq-nav.prev");
@@ -1645,38 +1541,6 @@
   faqNext.addEventListener("click", () => showFaq(faqIndex + 1));
   faqPrev.addEventListener("click", () => showFaq(faqIndex - 1));
   showFaq(0);
-
-  /* ================= VIDEO CAROUSEL ================= */
-  const vcSlides = document.querySelectorAll(".vc-slide");
-  const vcPrev = document.querySelector(".vc-prev");
-  const vcNext = document.querySelector(".vc-next");
-  const vcDots = document.querySelectorAll(".vc-dot");
-  let vcIndex = 0;
-
-  function stopAllVideos() {
-    vcSlides.forEach((s) => {
-      const v = s.querySelector("video");
-      if (v && !v.paused) v.pause();
-      if (v) v.currentTime = 0;
-    });
-  }
-
-  function showVideo(i) {
-    vcIndex = (i + vcSlides.length) % vcSlides.length;
-    vcSlides.forEach((s) => s.classList.remove("active"));
-    vcDots.forEach((d) => d.classList.remove("active"));
-
-    stopAllVideos();
-
-    vcSlides[vcIndex].classList.add("active");
-    vcDots[vcIndex].classList.add("active");
-  }
-
-  vcNext.addEventListener("click", () => showVideo(vcIndex + 1));
-  vcPrev.addEventListener("click", () => showVideo(vcIndex - 1));
-  vcDots.forEach((d, idx) => d.addEventListener("click", () => showVideo(idx)));
-
-  showVideo(0);
 </script>
 
 </body>
